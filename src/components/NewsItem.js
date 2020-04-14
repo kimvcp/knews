@@ -24,12 +24,12 @@ export default class NewsItem extends Component {
 							uri:
 								urlToImage != null
 									? urlToImage
-									: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.stickpng.com%2Fimg%2Ficons-logos-emojis%2Fquestion-marks%2Fred-yellow-question-mark&psig=AOvVaw340U_m7L2lNEHr881zg3n0&ust=1586966677689000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMD48Nyl6OgCFQAAAAAdAAAAABAD",
+									: "https://retohercules.com/images/question-mark-clipart-transparent-background-2.png",
 						}}
 					/>
 				</Left>
 				<Body>
-					<Text>{title}</Text>
+					<Text numberOfLines={2}>{title}</Text>
 					<Text note numberOfLines={2}>
 						{description}
 					</Text>
