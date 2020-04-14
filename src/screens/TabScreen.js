@@ -9,28 +9,28 @@ export default class TabScreen extends Component {
 		return (
 			<Container>
 				<HeaderTitle />
-				<Tabs tabBarUnderlineStyle={{ backgroundColor: "black" }}>
+				<Tabs>
 					<Tab
-						tabStyle={{ backgroundColor: "black" }}
-						activeTabStyle={{ backgroundColor: "white" }}
-						textStyle={{ color: "white" }}
-						activeTextStyle={{ color: "black" }}
+						// tabStyle={{ backgroundColor: "" }}
+						// activeTabStyle={{ backgroundColor: "" }}
+						// textStyle={{ color: "" }}
+						// activeTextStyle={{ color: "" }}
 						heading='Saved'>
 						<SavedScreen />
 					</Tab>
 					<Tab
-						tabStyle={{ backgroundColor: "black" }}
-						activeTabStyle={{ backgroundColor: "white" }}
-						textStyle={{ color: "white" }}
-						activeTextStyle={{ color: "black" }}
+						// tabStyle={{ backgroundColor: "" }}
+						// activeTabStyle={{ backgroundColor: "" }}
+						// textStyle={{ color: "" }}
+						// activeTextStyle={{ color: "" }}
 						heading='Home'>
 						<HomeScreen />
 					</Tab>
 					<Tab
-						tabStyle={{ backgroundColor: "black" }}
-						activeTabStyle={{ backgroundColor: "white" }}
-						textStyle={{ color: "white" }}
-						activeTextStyle={{ color: "black" }}
+						// tabStyle={{ backgroundColor: "" }}
+						// activeTabStyle={{ backgroundColor: "" }}
+						// textStyle={{ color: "" }}
+						// activeTextStyle={{ color: "" }}
 						heading='Saved'>
 						<SavedScreen />
 					</Tab>

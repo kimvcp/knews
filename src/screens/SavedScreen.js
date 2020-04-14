@@ -1,22 +1,12 @@
 import React, { Component } from "react";
-import { Container, Content, List } from "native-base";
-import NewsItem from "../components/NewsItem";
+import { View, Text } from "native-base";
 
 export default class SavedScreen extends Component {
 	render() {
 		return (
-			<Container>
-				<Content>
-					<List>
-						<NewsItem />
-						<NewsItem />
-						<NewsItem />
-						<NewsItem />
-						<NewsItem />
-						<NewsItem />
-					</List>
-				</Content>
-			</Container>
+			<View>
+				<Text>This is the saved screen</Text>
+			</View>
 		);
 	}
 }
