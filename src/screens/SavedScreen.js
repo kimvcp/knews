@@ -1,18 +1,22 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { Container, Content, List } from "native-base";
+import NewsItem from "../components/NewsItem";
 
 export default class SavedScreen extends Component {
-	constructor(props) {
-		super(props);
-	}
-
-	componentDidMount() {}
-
 	render() {
 		return (
-			<View>
-				<Text>Saved</Text>
-			</View>
+			<Container>
+				<Content>
+					<List>
+						<NewsItem />
+						<NewsItem />
+						<NewsItem />
+						<NewsItem />
+						<NewsItem />
+						<NewsItem />
+					</List>
+				</Content>
+			</Container>
 		);
 	}
 }

@@ -1,24 +1,12 @@
 import React, { Component } from "react";
-import { Container, Header, Content, Tab, Tabs } from "native-base";
-import SavedScreen from "./SavedScreen";
+import { View, Text } from "native-base";
 
 export default class HomeScreen extends Component {
 	render() {
 		return (
-			<Container>
-				<Header hasTabs />
-				<Tabs>
-					<Tab heading='Tab1'>
-						<SavedScreen />
-					</Tab>
-					<Tab heading='Tab2'>
-						<SavedScreen />
-					</Tab>
-					<Tab heading='Tab3'>
-						<SavedScreen />
-					</Tab>
-				</Tabs>
-			</Container>
+			<View>
+				<Text>kim</Text>
+			</View>
 		);
 	}
 }
