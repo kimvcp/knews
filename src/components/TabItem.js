@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import { Container, Content, List } from "native-base";
-import NewsItem from "./NewsItem";
-import { getArticles } from "../../service/news";
+import NewsCards from "./NewsCards";
+import { getArticles } from "../service/news";
 import { View, ActivityIndicator, Text } from "react-native";
 import styled from "styled-components";
 import Modal from "./Modal";
 
+const LoadingContainer = styled.View`
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	margin-top: 30px;
+`;
+
 const LoadingText = styled.Text`
-	margin-top: 10px;
+	margin-top: 15px;
 `;
 
 export default class TabItem extends Component {
@@ -30,8 +37,8 @@ export default class TabItem extends Component {
 	};
 
 	componentDidMount() {
-		const { category } = this.props;
-		getArticles(category).then(
+		const { category, countryCode } = this.props;
+		getArticles(category, countryCode).then(
 			(articles) => {
 				this.setState({
 					isLoading: false,
@@ -52,15 +59,15 @@ export default class TabItem extends Component {
 			modalArticleData,
 		} = this.state;
 		let newsLists = isLoading ? (
-			<View>
-				<ActivityIndicator animating={isLoading} />
-				<LoadingText>Please Wait..</LoadingText>
-			</View>
+			<LoadingContainer>
+				<ActivityIndicator animating={this.state.isLoading} />
+				<LoadingText children="Loading.." />
+			</LoadingContainer>
 		) : (
 			<List
 				dataArray={articles}
 				renderRow={(article) => {
-					return <NewsItem onPress={this.handleViewPressed} data={article} />;
+					return <NewsCards onPress={this.handleViewPressed} data={article} />;
 				}}
 			/>
 		);

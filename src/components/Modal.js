@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions, Modal, Share } from "react-native";
+import { Dimensions, Modal, Share, View, Text } from "react-native";
 import {
 	Container,
 	Header,
@@ -25,11 +25,15 @@ export default class ModalComponent extends Component {
 
 	handleShare = () => {
 		const { url, title } = this.props.articleData;
-		message = `${title}\n\nRead More at ${url}\n\nThis article is shared via KNEWS Application`;
-		return Share.share(
-			{ title, message, url: message },
-			{ dialogTitle: `Share ${title}` }
-		);
+		if (url && title) {
+			message = `${title}\n\nRead More at ${url}\n\nThis article is shared via KNEWS Application`;
+			return Share.share(
+				{ title, message, url: message },
+				{ dialogTitle: `Share ${title}` }
+			);
+		}else {
+            alert("This article cannot be exported")
+        }
 	};
 
 	render() {
@@ -42,10 +46,21 @@ export default class ModalComponent extends Component {
 					visible={showModal}
 					onRequestClose={this.handleClose}>
 					<Container
-						style={{ marginTop: 50, marginHorizontal: 15, marginBottom: 0, backgroundColor: "#fff", borderRadius:"100px" }}>
-						<Header style={{ backgroundColor: "#009387" }}>
+						style={{
+							marginTop: 50,
+							marginHorizontal: 15,
+							marginBottom: 0,
+							backgroundColor: "#fff",
+						}}>
+						<Header
+							style={{
+								backgroundColor: "#009387",
+								borderRadius: 20,
+								marginBottom: 10,
+							}}>
 							<Left>
 								<Button onPress={this.handleClose} transparent>
+									<Text>Back</Text>
 								</Button>
 							</Left>
 							<Body>
@@ -56,6 +71,7 @@ export default class ModalComponent extends Component {
 							</Body>
 							<Right>
 								<Button onPress={this.handleShare} transparent>
+									<Text>Send</Text>
 								</Button>
 							</Right>
 						</Header>

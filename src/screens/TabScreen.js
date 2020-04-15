@@ -15,7 +15,7 @@ export default class TabScreen extends Component {
 						// textStyle={{ color: "" }}
 						// activeTextStyle={{ color: "" }}
 						heading='General'>
-						<TabItem category="general" />
+						<TabItem category='general' countryCode='us' />
 					</Tab>
 					<Tab
 						// tabStyle={{ backgroundColor: "" }}
@@ -23,7 +23,7 @@ export default class TabScreen extends Component {
 						// textStyle={{ color: "" }}
 						// activeTextStyle={{ color: "" }}
 						heading='Business'>
-						<TabItem category="business"/>
+						<TabItem category='business' countryCode='us' />
 					</Tab>
 					<Tab
 						// tabStyle={{ backgroundColor: "" }}
@@ -31,7 +31,7 @@ export default class TabScreen extends Component {
 						// textStyle={{ color: "" }}
 						// activeTextStyle={{ color: "" }}
 						heading='Technology'>
-						<TabItem category="technology" />
+						<TabItem category='technology' countryCode='us' />
 					</Tab>
 				</Tabs>
 			</Container>
