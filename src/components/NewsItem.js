@@ -1,20 +1,34 @@
 import React, { Component } from "react";
 import {
 	ListItem,
-	Thumbnail,
-	Text,
 	Left,
-	Body,
 	Right,
+	Thumbnail,
+	Body,
+	View,
+	Text,
 	Button,
 } from "native-base";
+import TimeAgo from "./Time";
 
 export default class NewsItem extends Component {
 	constructor(props) {
 		super(props);
 	}
+
+	handleViewPressed = () => {
+		const { url, title } = this.props.data;
+		this.props.onPress({ url, title });
+	};
+
 	render() {
-		const { urlToImage, title, description } = this.props.data;
+		const {
+			urlToImage,
+			title,
+			description,
+			source,
+			publishedAt,
+		} = this.props.data;
 		return (
 			<ListItem thumbnail>
 				<Left>
@@ -33,9 +47,19 @@ export default class NewsItem extends Component {
 					<Text note numberOfLines={2}>
 						{description}
 					</Text>
+					<View
+						style={{
+							flex: 1,
+							flexDirection: "row",
+							marginTop: 8,
+							marginLeft: 0,
+						}}>
+						<Text note>{source.name}</Text>
+						<TimeAgo time={publishedAt} />
+					</View>
 				</Body>
 				<Right>
-					<Button transparent>
+					<Button transparent onPress={this.handleViewPressed}>
 						<Text>View</Text>
 					</Button>
 				</Right>

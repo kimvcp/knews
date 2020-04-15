@@ -1,12 +1,11 @@
 import {
 	articles_url,
 	api_key,
-	category,
 	country_code,
 } from "../src/config/rest_config";
 import axios from "axios";
 
-export const getArticles = async () => {
+export const getArticles = async (category='general') => {
 	try {
 		let articles = await fetch(
 			`${articles_url}?country=${country_code}&category=${category}`,

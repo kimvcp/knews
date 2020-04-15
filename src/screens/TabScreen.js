@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Container, Tab, Tabs } from "native-base";
-import SavedScreen from "./SavedScreen";
 import HeaderTitle from "../components/Header";
-import HomeScreen from "./HomeScreen";
+import TabItem from "../components/TabItem";
 
 export default class TabScreen extends Component {
 	render() {
@@ -15,24 +14,24 @@ export default class TabScreen extends Component {
 						// activeTabStyle={{ backgroundColor: "" }}
 						// textStyle={{ color: "" }}
 						// activeTextStyle={{ color: "" }}
-						heading='Saved'>
-						<SavedScreen />
+						heading='General'>
+						<TabItem category="general" />
 					</Tab>
 					<Tab
 						// tabStyle={{ backgroundColor: "" }}
 						// activeTabStyle={{ backgroundColor: "" }}
 						// textStyle={{ color: "" }}
 						// activeTextStyle={{ color: "" }}
-						heading='Home'>
-						<HomeScreen />
+						heading='Business'>
+						<TabItem category="business"/>
 					</Tab>
 					<Tab
 						// tabStyle={{ backgroundColor: "" }}
 						// activeTabStyle={{ backgroundColor: "" }}
 						// textStyle={{ color: "" }}
 						// activeTextStyle={{ color: "" }}
-						heading='Saved'>
-						<SavedScreen />
+						heading='Technology'>
+						<TabItem category="technology" />
 					</Tab>
 				</Tabs>
 			</Container>
