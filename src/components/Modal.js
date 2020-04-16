@@ -8,10 +8,10 @@ import {
 	Left,
 	Right,
 	Title,
+	Icon,
 	Button,
 } from "native-base";
 import { WebView } from "react-native-webview";
-
 const webViewHeight = Dimensions.get("window").height - 56;
 
 export default class ModalComponent extends Component {
@@ -31,9 +31,9 @@ export default class ModalComponent extends Component {
 				{ title, message, url: message },
 				{ dialogTitle: `Share ${title}` }
 			);
-		}else {
-            alert("This article cannot be exported")
-        }
+		} else {
+			alert("This article cannot be exported");
+		}
 	};
 
 	render() {
