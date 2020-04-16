@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Container, Content, List } from "native-base";
 import NewsCards from "./NewsCards";
 import { getArticles } from "../service/news";
-import { View, ActivityIndicator, Text } from "react-native";
 import styled from "styled-components";
 import Modal from "./Modal";
 
@@ -10,11 +9,12 @@ const LoadingContainer = styled.View`
 	flex: 1;
 	align-items: center;
 	justify-content: center;
-	margin-top: 30px;
+	margin-top: 50px;
 `;
 
-const LoadingText = styled.Text`
-	margin-top: 15px;
+const Loading = styled.Image`
+	width: 100px;
+	height: 100px;
 `;
 
 export default class TabItem extends Component {
@@ -60,8 +60,7 @@ export default class TabItem extends Component {
 		} = this.state;
 		let newsLists = isLoading ? (
 			<LoadingContainer>
-				<ActivityIndicator animating={this.state.isLoading} />
-				<LoadingText children="Loading.." />
+				<Loading source={require("../../assets/loading.gif")}/>
 			</LoadingContainer>
 		) : (
 			<List
