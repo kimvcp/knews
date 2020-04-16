@@ -54,7 +54,7 @@ export default class ModalComponent extends Component {
 						style={{ margin: 15, marginBottom: 0, backgroundColor: "#fff" }}>
 						<Header
 							style={{
-								backgroundColor: "#009387",
+								backgroundColor: "#232f34",
 								paddingLeft: 15,
 							}}>
 							<Left>
