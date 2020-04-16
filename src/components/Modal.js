@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions, Modal, Share, View, Text } from "react-native";
+import { Dimensions, Modal, Share, Image, Text } from "react-native";
 import {
 	Container,
 	Header,
@@ -8,11 +8,16 @@ import {
 	Left,
 	Right,
 	Title,
-	Icon,
 	Button,
 } from "native-base";
 import { WebView } from "react-native-webview";
+import styled from "styled-components";
 const webViewHeight = Dimensions.get("window").height - 56;
+
+const Icon = styled.Image`
+	width: ${(props) => props.size || 20}px;
+	height: ${(props) => props.size || 20}px;
+`;
 
 export default class ModalComponent extends Component {
 	constructor(props) {
@@ -46,21 +51,15 @@ export default class ModalComponent extends Component {
 					visible={showModal}
 					onRequestClose={this.handleClose}>
 					<Container
-						style={{
-							marginTop: 50,
-							marginHorizontal: 15,
-							marginBottom: 0,
-							backgroundColor: "#fff",
-						}}>
+						style={{ margin: 15, marginBottom: 0, backgroundColor: "#fff" }}>
 						<Header
 							style={{
 								backgroundColor: "#009387",
-								borderRadius: 20,
-								marginBottom: 10,
+								paddingLeft: 15,
 							}}>
 							<Left>
 								<Button onPress={this.handleClose} transparent>
-									<Text>Back</Text>
+									<Icon size={15} source={require("../../assets/close.png")} />
 								</Button>
 							</Left>
 							<Body>
@@ -71,7 +70,7 @@ export default class ModalComponent extends Component {
 							</Body>
 							<Right>
 								<Button onPress={this.handleShare} transparent>
-									<Text>Send</Text>
+									<Icon size={27} source={require("../../assets/share.png")} />
 								</Button>
 							</Right>
 						</Header>
