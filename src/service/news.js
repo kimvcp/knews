@@ -3,7 +3,6 @@ import {
 	api_key,
 	country_code,
 } from "../config/rest_config";
-import axios from "axios";
 
 export const getArticles = async (category='general', country_code='us') => {
 	try {
