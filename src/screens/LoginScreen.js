@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
 import styled from "styled-components";
+import * as Facebook from 'expo-facebook'
 
 const Container = styled.View`
 	flex: 1;
@@ -22,7 +22,7 @@ const InputContainer = styled.View`
 	background-color: #ffffff;
 	border-radius: 30px;
 	border-bottom-width: 1;
-	margin-bottom: 20px;
+	margin-bottom: ${props => props.marginBottom || 20}px;
 	flex-direction: row;
 	align-items: center;
 `;
@@ -41,19 +41,18 @@ const Icon = styled.Image`
 	justify-content: center;
 `;
 
-const SignInContainer = styled.TouchableHighlight`
+const ButtonContainer = styled.TouchableHighlight`
 	height: 45;
 	width: 70%;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	margin-top: 50px;
 	border-radius: 30px;
-	background-color: #2087f2;
+	background-color: ${(props) => props.background};
 `;
 
-const SignInText = styled.Text`
-	color: white;
+const TextColor = styled.Text`
+	color: ${(props) => props.color || "white"};
 `;
 
 const OrContainer = styled.View`
@@ -78,10 +77,6 @@ const TextContainer = styled.TouchableOpacity`
 	margin-horizontal: 25px;
 `;
 
-const DetailText = styled.Text`
-	color: white;
-`;
-
 const Row = styled.View`
 	flex-direction: row;
 `;
@@ -96,6 +91,27 @@ export default class LoginScreen extends Component {
 	}
 	handleLogin = () => {
 		this.props.navigation.navigate("Home");
+	};
+
+	handleFacebookLogin = async () => {
+		try {
+			const { type, token } = await Facebook.logInWithReadPermissionsAsync(
+				"225175868716001",
+				{
+					permissions: ["public_profile"],
+				}
+			);
+			if (type === "success") {
+				const response = await fetch(
+					`https://graph.facebook.com/me?access_token=${token}`
+				);
+				alert("Logged in!", `Hi ${(await response.json()).name}!`);
+			} else {
+				alert("Something is wrong !");
+			}
+		} catch ({ message }) {
+			alert(`Facebook Login Error: ${message}`);
+		}
 	};
 
 	handleForgotDetails = () => {};
@@ -115,7 +131,7 @@ export default class LoginScreen extends Component {
 						onChangeText={(email) => this.setState({ email })}
 					/>
 				</InputContainer>
-				<InputContainer>
+				<InputContainer marginBottom={50}>
 					<Icon size={20} source={require("../../assets/icons/password.png")} />
 					<Input
 						placeholder='Password'
@@ -125,21 +141,24 @@ export default class LoginScreen extends Component {
 					/>
 				</InputContainer>
 
-				<SignInContainer onPress={this.handleLogin}>
-					<SignInText>SIGN IN</SignInText>
-				</SignInContainer>
+				<ButtonContainer background='#2087f2' onPress={this.handleLogin}>
+					<TextColor>SIGN IN</TextColor>
+				</ButtonContainer>
 				<OrContainer>
 					<Line />
 					<OrText>OR</OrText>
 					<Line />
 				</OrContainer>
+				<ButtonContainer background='white' onPress={this.handleFacebookLogin}>
+					<TextColor color='blue'>CONTINUE WITH FACEBOOK</TextColor>
+				</ButtonContainer>
 				<Row>
 					<TextContainer onPress={this.handleForgotDetails}>
-						<DetailText>FORGOT DETAILS??</DetailText>
+						<TextColor>FORGOT DETAILS?</TextColor>
 					</TextContainer>
 
 					<TextContainer onPress={this.handleCreateAccount}>
-						<DetailText>CREATE ACCOUNT</DetailText>
+						<TextColor>CREATE ACCOUNT</TextColor>
 					</TextContainer>
 				</Row>
 			</Container>

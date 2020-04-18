@@ -132,6 +132,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle Expo Assets */,
 				A7CC1834C54D4A394BF23C4E /* [CP-User] [RNFB] Core Configuration */,
+				13E9D60A1ED935123002288F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,6 +201,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "../node_modules/expo-updates/bundle-expo-assets.sh\n";
+		};
+		13E9D60A1ED935123002288F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-knews/Pods-knews-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-knews/Pods-knews-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		A7CC1834C54D4A394BF23C4E /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
