@@ -1,8 +1,7 @@
 import {
 	articles_url,
 	api_key,
-	country_code,
-} from "../config/rest_config";
+} from "../config";
 
 export const getArticles = async (category='general', country_code='us') => {
 	try {
