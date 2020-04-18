@@ -59,7 +59,7 @@ export default class ModalComponent extends Component {
 							}}>
 							<Left>
 								<Button onPress={this.handleClose} transparent>
-									<Icon size={15} source={require("../../assets/close.png")} />
+									<Icon size={15} source={require("../../assets/icons/close.png")} />
 								</Button>
 							</Left>
 							<Body>
@@ -70,7 +70,7 @@ export default class ModalComponent extends Component {
 							</Body>
 							<Right>
 								<Button onPress={this.handleShare} transparent>
-									<Icon size={27} source={require("../../assets/share.png")} />
+									<Icon size={27} source={require("../../assets/icons/share.png")} />
 								</Button>
 							</Right>
 						</Header>

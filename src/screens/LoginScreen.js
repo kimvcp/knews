@@ -1,21 +1,27 @@
 import React, { Component } from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import styled from "styled-components";
 
 const Container = styled.View`
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	background-color: #dcdcdc;
+`;
+
+const Background = styled.Image`
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 0;
 `;
 
 const InputContainer = styled.View`
+	height: 45;
+	width: 70%;
 	border-bottom-color: #f5fcff;
 	background-color: #ffffff;
 	border-radius: 30px;
 	border-bottom-width: 1;
-	width: 250;
-	height: 45;
 	margin-bottom: 20px;
 	flex-direction: row;
 	align-items: center;
@@ -29,30 +35,51 @@ const Input = styled.TextInput`
 `;
 
 const Icon = styled.Image`
-	width: 30;
-	height: 30;
+	width: ${(props) => props.size}px;
+	height: ${(props) => props.size}px;
 	margin-left: 15px;
 	justify-content: center;
 `;
 
 const SignInContainer = styled.TouchableHighlight`
 	height: 45;
+	width: 70%;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	margin-top: 50px;
-	width: 250;
 	border-radius: 30px;
-	background-color: #00b5ec;
+	background-color: #2087f2;
 `;
 
 const SignInText = styled.Text`
 	color: white;
 `;
 
+const OrContainer = styled.View`
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+`;
+
+const Line = styled.View`
+	background-color: #d8d8d8;
+	height: 2;
+	width: 80;
+`;
+
+const OrText = styled.Text`
+	margin: 20px;
+	color: white;
+`;
+
 const TextContainer = styled.TouchableOpacity`
 	margin-top: 70px;
 	margin-horizontal: 25px;
+`;
+
+const DetailText = styled.Text`
+	color: white;
 `;
 
 const Row = styled.View`
@@ -78,12 +105,9 @@ export default class LoginScreen extends Component {
 	render() {
 		return (
 			<Container>
+				<Background source={require("../../assets/background.jpg")} />
 				<InputContainer>
-					<Icon
-						source={{
-							uri: "https://png.icons8.com/message/ultraviolet/50/3498db",
-						}}
-					/>
+					<Icon size={22} source={require("../../assets/icons/email.png")} />
 					<Input
 						placeholder='Email'
 						keyboardType='email-address'
@@ -92,11 +116,7 @@ export default class LoginScreen extends Component {
 					/>
 				</InputContainer>
 				<InputContainer>
-					<Icon
-						source={{
-							uri: "https://png.icons8.com/key-2/ultraviolet/50/3498db",
-						}}
-					/>
+					<Icon size={20} source={require("../../assets/icons/password.png")} />
 					<Input
 						placeholder='Password'
 						secureTextEntry={true}
@@ -108,13 +128,18 @@ export default class LoginScreen extends Component {
 				<SignInContainer onPress={this.handleLogin}>
 					<SignInText>SIGN IN</SignInText>
 				</SignInContainer>
+				<OrContainer>
+					<Line />
+					<OrText>OR</OrText>
+					<Line />
+				</OrContainer>
 				<Row>
 					<TextContainer onPress={this.handleForgotDetails}>
-						<Text>FORGOT DETAILS??</Text>
+						<DetailText>FORGOT DETAILS??</DetailText>
 					</TextContainer>
 
 					<TextContainer onPress={this.handleCreateAccount}>
-						<Text>CREATE ACCOUNT</Text>
+						<DetailText>CREATE ACCOUNT</DetailText>
 					</TextContainer>
 				</Row>
 			</Container>

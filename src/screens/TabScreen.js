@@ -13,7 +13,7 @@ export default class TabScreen extends Component {
 						tabStyle={{ backgroundColor: "#4A6572" }}
 						activeTabStyle={{ backgroundColor: "#344955" }}
 						textStyle={{ color: "white",fontWeight: "500"  }}
-						activeTextStyle={{ color: "#F9AA33", fontWeight: "700" }}
+						activeTextStyle={{ color: "#c", fontWeight: "700" }}
 						heading='General'>
 						<TabItem category='general' countryCode='us' />
 					</Tab>
