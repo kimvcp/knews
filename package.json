@@ -8,6 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^6.4.0",
     "expo": "~37.0.3",
     "expo-font": "^8.1.1",
     "expo-updates": "~0.1.0",
