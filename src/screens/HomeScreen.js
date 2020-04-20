@@ -5,7 +5,6 @@ import {
 	Picker,
 } from "native-base";
 import { CATEGORIES, COUNTRY_CODE } from "../config";
-import HeaderSection from "../components/HeaderSection";
 import NewsContainer from "../components/NewsContainer";
 const countries = require("country-data").countries;
 import styled from "styled-components";
@@ -47,7 +46,6 @@ export default class HomeScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<HeaderSection />
 				<Content>
 					<PickerContainer>
 						<Picker

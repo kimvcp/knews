@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import {loginFacebook} from "../service/facebook"
+import { loginFacebook } from "../service/facebook";
 
 const Container = styled.View`
 	flex: 1;
@@ -130,8 +130,8 @@ export default class LoginScreen extends Component {
 					/>
 				</InputContainer>
 
-				<ButtonContainer background='#2087f2' onPress={this.handleLogin}>
-					<TextColor>SIGN IN</TextColor>
+				<ButtonContainer background='#344955' onPress={this.handleLogin}>
+					<TextColor color='#F9AA33'>SIGN IN</TextColor>
 				</ButtonContainer>
 				<OrContainer>
 					<Line />
