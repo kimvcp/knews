@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Content, List } from "native-base";
-import NewsCards from "./NewsCards";
+import NewsItem from "./NewsItem";
 import { getArticles } from "../service/news";
 import styled from "styled-components";
 import Modal from "./Modal";
@@ -17,7 +17,7 @@ const Loading = styled.Image`
 	height: 100px;
 `;
 
-export default class TabItem extends Component {
+export default class NewsContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -60,13 +60,13 @@ export default class TabItem extends Component {
 		} = this.state;
 		let newsLists = isLoading ? (
 			<LoadingContainer>
-				<Loading source={require("../../assets/loading.gif")}/>
+				<Loading source={require("../../assets/loading.gif")} />
 			</LoadingContainer>
 		) : (
 			<List
 				dataArray={articles}
 				renderRow={(article) => {
-					return <NewsCards onPress={this.handleViewPressed} data={article} />;
+					return <NewsItem onPress={this.handleViewPressed} data={article} />;
 				}}
 			/>
 		);

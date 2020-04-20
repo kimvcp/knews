@@ -11,7 +11,7 @@ import {
 } from "native-base";
 import TimeAgo from "./Time";
 
-export default class NewsCards extends Component {
+export default class NewsItem extends Component {
 	constructor(props) {
 		super(props);
 	}
