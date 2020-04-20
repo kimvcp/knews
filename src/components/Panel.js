@@ -19,7 +19,7 @@ const Icon = styled.Image`
 	height: ${(props) => props.size || 20}px;
 `;
 
-export default class ModalComponent extends Component {
+export default class Panel extends Component {
 	constructor(props) {
 		super(props);
 	}

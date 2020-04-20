@@ -90,7 +90,7 @@ export default class LoginScreen extends Component {
 		};
 	}
 	handleLogin = () => {
-		this.props.navigation.navigate("Home");
+		this.props.navigation.navigate("Tab");
 	};
 
 	handleFacebookLogin = async () => {

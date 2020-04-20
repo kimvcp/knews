@@ -3,7 +3,7 @@ import { Container, Content, List } from "native-base";
 import NewsItem from "./NewsItem";
 import { getArticles } from "../service/news";
 import styled from "styled-components";
-import Modal from "./Modal";
+import Panel from "./Panel";
 
 const LoadingContainer = styled.View`
 	flex: 1;
@@ -88,7 +88,7 @@ export default class NewsContainer extends Component {
 		return (
 			<Container>
 				<Content>{newsLists}</Content>
-				<Modal
+				<Panel
 					showModal={setModalVisible}
 					articleData={modalArticleData}
 					onClose={this.handleModalClose}

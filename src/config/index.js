@@ -11,7 +11,6 @@ export const CATEGORIES = [
 	"technology",
 ];
 export const COUNTRY_CODE = [
-	"ae",
 	"ar",
 	"at",
 	"au",
@@ -62,7 +61,7 @@ export const COUNTRY_CODE = [
 	"tr",
 	"tw",
 	"ua",
+	"ae",
 	"us",
-	"ve",
 	"za",
 ];

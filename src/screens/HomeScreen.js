@@ -1,10 +1,24 @@
 import React, { Component } from "react";
-import { Container, Content, Picker, View } from "native-base";
+import {
+	Container,
+	Content,
+	Picker,
+} from "native-base";
 import { CATEGORIES, COUNTRY_CODE } from "../config";
-import HeaderTitle from "../components/Header";
+import HeaderSection from "../components/HeaderSection";
 import NewsContainer from "../components/NewsContainer";
-import FooterSection from "../components/Footer";
 const countries = require("country-data").countries;
+import styled from "styled-components";
+
+const PickerContainer = styled.View`
+	flex: 1;
+	flex-direction: row;
+	justify-content: space-around;
+	background-color: #344955;
+	border-radius: 10px;
+	margin-top: 15px;
+	margin-horizontal: 15px;
+`;
 
 export default class HomeScreen extends Component {
 	constructor(props) {
@@ -33,15 +47,9 @@ export default class HomeScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<HeaderTitle />
+				<HeaderSection />
 				<Content>
-					<View
-						style={{
-							flex: 1,
-							flexDirection: "row",
-							justifyContent: "space-around",
-							backgroundColor: "#344955",
-						}}>
+					<PickerContainer>
 						<Picker
 							note={false}
 							mode='dropdown'
@@ -66,13 +74,12 @@ export default class HomeScreen extends Component {
 							}}>
 							{this.renderCountryItems()}
 						</Picker>
-					</View>
+					</PickerContainer>
 					<NewsContainer
 						category={this.state.category}
 						countryCode={this.state.countryCode}
 					/>
 				</Content>
-				<FooterSection />
 			</Container>
 		);
 	}

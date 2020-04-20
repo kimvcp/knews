@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Header, Left, Body, Right, Title } from "native-base";
 
-export default class HeaderTitle extends Component {
+export default class HeaderSection extends Component {
 	render() {
 		return (
 			<Header style={{ backgroundColor: "#4A6572" }}>
