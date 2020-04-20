@@ -15,20 +15,8 @@ export default class HomeScreen extends Component {
 		};
 	}
 
-	onCategoryChange = (value) => {
-		this.setState({
-			category: value,
-		});
-	};
-
-	onCountryCodeChange = (value) => {
-		this.setState({
-			countryCode: value,
-		});
-	};
-
 	renderCountryItems = () =>
-		COUNTRY_CODE.map((country, index) => {
+		COUNTRY_CODE.map((country) => {
 			return (
 				<Picker.Item
 					label={countries[country.toUpperCase()].name}
@@ -38,7 +26,7 @@ export default class HomeScreen extends Component {
 		});
 
 	renderCategoryItems = () =>
-		CATEGORIES.map((category, index) => {
+		CATEGORIES.map((category) => {
 			return <Picker.Item label={category.toUpperCase()} value={category} />;
 		});
 
@@ -46,25 +34,36 @@ export default class HomeScreen extends Component {
 		return (
 			<Container>
 				<HeaderTitle />
-				<Content padder>
+				<Content>
 					<View
 						style={{
 							flex: 1,
 							flexDirection: "row",
 							justifyContent: "space-around",
+							backgroundColor: "#344955",
 						}}>
 						<Picker
 							note={false}
 							mode='dropdown'
+							textStyle={{ color: "#F9AA33" }}
 							selectedValue={this.state.category}
-							onValueChange={this.onCategoryChange}>
+							onValueChange={(value) => {
+								this.setState({
+									category: value,
+								});
+							}}>
 							{this.renderCategoryItems()}
 						</Picker>
 						<Picker
 							note={false}
 							mode='dropdown'
+							textStyle={{ color: "#F9AA33" }}
 							selectedValue={this.state.countryCode}
-							onValueChange={this.onCountryCodeChange}>
+							onValueChange={(value) => {
+								this.setState({
+									countryCode: value,
+								});
+							}}>
 							{this.renderCountryItems()}
 						</Picker>
 					</View>
