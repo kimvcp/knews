@@ -1,68 +1,70 @@
 import React, { Component } from "react";
-import {
-	Container,
-	Tab,
-	Tabs,
-	Footer,
-	Button,
-	Text,
-	Content,
-	ActionSheet,
-	Picker,
-	Form,
-} from "native-base";
+import { Container, Content, Picker, View } from "native-base";
+import { CATEGORIES, COUNTRY_CODE} from "../config"
 import HeaderTitle from "../components/Header";
 import NewsContainer from "../components/NewsContainer";
-
-const CATEGORIES = [
-	"business",
-	"entertainment",
-	"general",
-	"health",
-	"science",
-	"sports",
-	"technology",
-	"Cancel",
-];
-const CANCEL_INDEX = 7;
+import FooterSection from "../components/Footer";
 
 export default class HomeScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			category: "",
-			countryCode: "",
+			category: "general",
+			countryCode: "us",
 		};
 	}
 
-	onValueChange(value) {
+	onCategoryChange = (value) => {
 		this.setState({
 			category: value,
 		});
-	}
+	};
+
+	onCountryCodeChange = (value) => {
+		this.setState({
+			countryCode: value,
+		});
+	};
+
+	renderPickerItems = (pickerItems) =>
+		pickerItems.map((item, index) => {
+			return <Picker.Item label={item.toUpperCase()} value={item} />;
+		});
 
 	render() {
 		return (
 			<Container>
 				<HeaderTitle />
 				<Content padder>
-					<Form>
+					<View
+						style={{
+							flex: 1,
+							flexDirection: "row",
+							justifyContent: "space-around",
+						}}>
 						<Picker
-							note
+							note={false}
 							mode='dropdown'
-							style={{ width: 120 }}
+							style={{ width: undefined }}
 							selectedValue={this.state.category}
-							onValueChange={this.onValueChange.bind(this)}>
-							<Picker.Item label='Wallet' value='key0' />
-							<Picker.Item label='ATM Card' value='key1' />
-							<Picker.Item label='Debit Card' value='key2' />
-							<Picker.Item label='Credit Card' value='key3' />
-							<Picker.Item label='Net Banking' value='key4' />
+							onValueChange={this.onCategoryChange}>
+							{this.renderPickerItems(CATEGORIES)}
 						</Picker>
-					</Form>
-					<NewsContainer category='technology' countryCode='us' />
-					<Footer />
+						<Picker
+							note={false}
+							mode='dropdown'
+							style={{ width: undefined }}
+							selectedValue={this.state.countryCode}
+							onValueChange={this.onCountryCodeChange}>
+							{this.renderPickerItems(COUNTRY_CODE)}
+						</Picker>
+					</View>
+					<NewsContainer
+						category={this.state.category}
+						countryCode={this.state.countryCode}
+					/>
 				</Content>
+				<FooterSection />
 			</Container>
 		);
 	}

@@ -36,8 +36,8 @@ export default class NewsContainer extends Component {
 		this.setState({ setModalVisible: false, modalArticleData: {} });
 	};
 
-	componentDidMount() {
-		const { category, countryCode } = this.props;
+	callGetArticles = (category, countryCode) => {
+		this.setState({ isLoading: true });
 		getArticles(category, countryCode).then(
 			(articles) => {
 				this.setState({
@@ -49,6 +49,21 @@ export default class NewsContainer extends Component {
 				alert("Error: ", error);
 			}
 		);
+	};
+
+	componentDidMount() {
+		const { category, countryCode } = this.props;
+		this.callGetArticles(category, countryCode);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { category, countryCode } = this.props;
+		if (
+			nextProps.category !== category ||
+			nextProps.countryCode !== countryCode
+		) {
+			this.callGetArticles(nextProps.category, nextProps.countryCode);
+		}
 	}
 
 	render() {

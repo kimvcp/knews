@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Footer, FooterTab, Button } from "native-base";
+import { Footer, FooterTab, Button, Text } from "native-base";
 
-export default class HeaderTitle extends Component {
+export default class FooterSection extends Component {
 	render() {
 		return (
 			<Footer>

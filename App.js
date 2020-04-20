@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Text } from "native-base";
+import { Container } from "native-base";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import HomeScreen from "./src/screens/HomeScreen";
 import LoginScreen from "./src/screens/LoginScreen";
