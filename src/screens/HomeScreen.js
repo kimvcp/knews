@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Container, Content, Picker, View } from "native-base";
-import { CATEGORIES, COUNTRY_CODE} from "../config"
+import { CATEGORIES, COUNTRY_CODE } from "../config";
 import HeaderTitle from "../components/Header";
 import NewsContainer from "../components/NewsContainer";
 import FooterSection from "../components/Footer";
+const countries = require("country-data").countries;
 
 export default class HomeScreen extends Component {
 	constructor(props) {
@@ -26,9 +27,19 @@ export default class HomeScreen extends Component {
 		});
 	};
 
-	renderPickerItems = (pickerItems) =>
-		pickerItems.map((item, index) => {
-			return <Picker.Item label={item.toUpperCase()} value={item} />;
+	renderCountryItems = () =>
+		COUNTRY_CODE.map((country, index) => {
+			return (
+				<Picker.Item
+					label={countries[country.toUpperCase()].name}
+					value={country}
+				/>
+			);
+		});
+
+	renderCategoryItems = () =>
+		CATEGORIES.map((category, index) => {
+			return <Picker.Item label={category.toUpperCase()} value={category} />;
 		});
 
 	render() {
@@ -45,18 +56,16 @@ export default class HomeScreen extends Component {
 						<Picker
 							note={false}
 							mode='dropdown'
-							style={{ width: undefined }}
 							selectedValue={this.state.category}
 							onValueChange={this.onCategoryChange}>
-							{this.renderPickerItems(CATEGORIES)}
+							{this.renderCategoryItems()}
 						</Picker>
 						<Picker
 							note={false}
 							mode='dropdown'
-							style={{ width: undefined }}
 							selectedValue={this.state.countryCode}
 							onValueChange={this.onCountryCodeChange}>
-							{this.renderPickerItems(COUNTRY_CODE)}
+							{this.renderCountryItems()}
 						</Picker>
 					</View>
 					<NewsContainer
@@ -68,33 +77,4 @@ export default class HomeScreen extends Component {
 			</Container>
 		);
 	}
-}
-
-{
-	/* <Tabs tabBarUnderlineStyle={{ backgroundColor: "#F9AA33" }}>
-					<Tab
-						tabStyle={{ backgroundColor: "#4A6572" }}
-						activeTabStyle={{ backgroundColor: "#344955" }}
-						textStyle={{ color: "white", fontWeight: "500" }}
-						activeTextStyle={{ color: "#c", fontWeight: "700" }}
-						heading='General'>
-						<NewsContainer category='general' countryCode='us' />
-					</Tab>
-					<Tab
-						tabStyle={{ backgroundColor: "#4A6572" }}
-						activeTabStyle={{ backgroundColor: "#344955" }}
-						textStyle={{ color: "white", fontWeight: "500" }}
-						activeTextStyle={{ color: "#F9AA33", fontWeight: "700" }}
-						heading='Business'>
-						<NewsContainer category='business' countryCode='us' />
-					</Tab>
-					<Tab
-						tabStyle={{ backgroundColor: "#4A6572" }}
-						activeTabStyle={{ backgroundColor: "#344955" }}
-						textStyle={{ color: "white", fontWeight: "500" }}
-						activeTextStyle={{ color: "#F9AA33", fontWeight: "700" }}
-						heading='Technology'>
-						<NewsContainer category='technology' countryCode='us' />
-					</Tab>
-				</Tabs> */
 }
