@@ -116,7 +116,7 @@ export default class LoginScreen extends Component {
 					/>
 				</InputContainer>
 				<InputContainer marginBottom={50}>
-					<Icon size={20} source={require("../../assets/icons/password.png")} />
+					<Icon size={22} source={require("../../assets/icons/password.png")} />
 					<Input
 						placeholder='Password'
 						secureTextEntry={true}

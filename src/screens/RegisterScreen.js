@@ -29,7 +29,7 @@ export default class RegisterScreen extends Component {
 		return (
 			<Container>
 				<InputContainer>
-					<Icon size={22} source={require("../../assets/icons/email.png")} />
+					<Icon size={22} source={require("../../assets/icons/user.png")} />
 					<Input
 						placeholder='Full name'
 						keyboardType='default'
@@ -49,7 +49,7 @@ export default class RegisterScreen extends Component {
 				</InputContainer>
 
 				<InputContainer marginBottom={50}>
-					<Icon size={20} source={require("../../assets/icons/password.png")} />
+					<Icon size={22} source={require("../../assets/icons/password.png")} />
 					<Input
 						placeholder='Password'
 						secureTextEntry={true}
