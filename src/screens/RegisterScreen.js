@@ -4,22 +4,47 @@ import {
 	InputContainer,
 	Icon,
 	Input,
+	Background,
 	ButtonContainer,
 	TextContainer,
 	TextColor,
 } from "./LoginScreen";
+import auth from "@react-native-firebase/auth";
 
 export default class RegisterScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: "",
-			email: "",
-			password: "",
+			name: null,
+			email: null,
+			password: null,
 		};
 	}
 
-	handleRegister = () => {};
+	handleRegister = () => {
+		const { email, password } = this.state;
+		if (email && password) {
+			auth()
+				.createUserWithEmailAndPassword(email, password)
+				.then(() => {
+					alert("User account created & signed in!");
+					this.props.navigation.navigate("Login");
+				})
+				.catch((error) => {
+					if (error.code === "auth/email-already-in-use") {
+						alert("That email address is already in use!");
+					}
+
+					if (error.code === "auth/invalid-email") {
+						alert("That email address is invalid!");
+					}
+
+					console.error(error);
+				});
+		} else {
+			alert("The field cannot be empty");
+		}
+	};
 
 	handleHaveAccount = () => {
 		this.props.navigation.navigate("Login");
@@ -28,6 +53,7 @@ export default class RegisterScreen extends Component {
 	render() {
 		return (
 			<Container>
+				<Background source={require("../../assets/register-background.jpg")} />
 				<InputContainer>
 					<Icon size={22} source={require("../../assets/icons/user.png")} />
 					<Input
@@ -62,7 +88,7 @@ export default class RegisterScreen extends Component {
 					<TextColor color='#F9AA33'>REGISTER</TextColor>
 				</ButtonContainer>
 				<TextContainer onPress={this.handleHaveAccount}>
-					<TextColor color='black'>HAVE AN ACCOUNT?</TextColor>
+					<TextColor>HAVE AN ACCOUNT?</TextColor>
 				</TextContainer>
 			</Container>
 		);

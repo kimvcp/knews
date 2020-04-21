@@ -36,6 +36,8 @@ target 'knews' do
   pod 'glog', :podspec => "#{rnPrefix}/third-party-podspecs/glog.podspec"
   pod 'Folly', :podspec => "#{rnPrefix}/third-party-podspecs/Folly.podspec"
   pod 'FBSDKLoginKit'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Analytics'
   
   # Other native modules
 

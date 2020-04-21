@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { loginFacebook } from "../service/facebook";
+import auth from "@react-native-firebase/auth";
 
 export const Container = styled.View`
 	flex: 1;
@@ -80,12 +81,27 @@ export default class LoginScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: "",
-			password: "",
+			email: null,
+			password: null,
 		};
 	}
 	handleLogin = () => {
-		this.props.navigation.navigate("Tab");
+		const { email, password } = this.state;
+		if (email && password) {
+			auth()
+				.signInWithEmailAndPassword(email, password)
+				.then(() => {
+					this.props.navigation.navigate("Tab");
+				})
+				.catch((error) => {
+					if (error.code === "auth/wrong-password") {
+						alert("The email or password is invalid");
+					}
+					console.error(error);
+				});
+		} else {
+			alert("The field cannot be empty");
+		}
 	};
 
 	handleFacebookLogin = async () => {
@@ -96,7 +112,7 @@ export default class LoginScreen extends Component {
 			});
 			alert(`Logged in!, Hi ${response.json().name}!`);
 		}
-	}
+	};
 
 	handleCreateAccount = () => {
 		this.props.navigation.navigate("Register");
@@ -105,7 +121,7 @@ export default class LoginScreen extends Component {
 	render() {
 		return (
 			<Container>
-				<Background source={require("../../assets/background.jpg")} />
+				<Background source={require("../../assets/login-background.jpg")} />
 				<InputContainer>
 					<Icon size={22} source={require("../../assets/icons/email.png")} />
 					<Input

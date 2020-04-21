@@ -3,7 +3,7 @@
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://a9-bpg.buzzfreeze.knews.exp.direct",
+  "packagerNgrokUrl": "https://packager.a9-bpg.buzzfreeze.knews.exp.direct",
+  "ngrokPid": 69230
 }

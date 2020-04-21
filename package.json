@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-firebase/app": "^6.4.0",
+    "@react-native-firebase/auth": "^6.4.0",
     "country-data": "0.0.31",
     "expo": "~37.0.3",
     "expo-facebook": "^8.1.0",
