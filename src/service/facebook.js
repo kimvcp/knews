@@ -1,5 +1,6 @@
 import { facebook_app_id } from "../config";
 import * as Facebook from "expo-facebook";
+import auth from "@react-native-firebase/auth";
 
 export const loginFacebook = async () => {
 	try {
@@ -10,10 +11,11 @@ export const loginFacebook = async () => {
 			}
 		);
 		if (type === "success") {
-			const response = await fetch(
-				`https://graph.facebook.com/me?access_token=${token}`
-			);
-			return response;
+			await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+
+			// Sign-in the user with the credential
+			const facebookCredential = auth.FacebookAuthProvider.credential(token);
+			return auth().signInWithCredential(facebookCredential);
 		} else {
 			alert("Something is wrong !");
 		}

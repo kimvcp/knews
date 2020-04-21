@@ -104,16 +104,6 @@ export default class LoginScreen extends Component {
 		}
 	};
 
-	handleFacebookLogin = async () => {
-		const response = await loginFacebook();
-		if (response) {
-			this.props.navigation.navigate("Home", {
-				facebookData: response.json(),
-			});
-			alert(`Logged in!, Hi ${response.json().name}!`);
-		}
-	};
-
 	handleCreateAccount = () => {
 		this.props.navigation.navigate("Register");
 	};
@@ -149,7 +139,7 @@ export default class LoginScreen extends Component {
 					<OrText>OR</OrText>
 					<Line />
 				</OrContainer>
-				<ButtonContainer background='white' onPress={this.handleFacebookLogin}>
+				<ButtonContainer background='white' onPress={loginFacebook}>
 					<TextColor color='blue'>CONTINUE WITH FACEBOOK</TextColor>
 				</ButtonContainer>
 				<TextContainer onPress={this.handleCreateAccount}>
