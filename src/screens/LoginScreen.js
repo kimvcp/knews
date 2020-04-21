@@ -2,20 +2,20 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { loginFacebook } from "../service/facebook";
 
-const Container = styled.View`
+export const Container = styled.View`
 	flex: 1;
 	justify-content: center;
 	align-items: center;
 `;
 
-const Background = styled.Image`
+export const Background = styled.Image`
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	z-index: 0;
 `;
 
-const InputContainer = styled.View`
+export const InputContainer = styled.View`
 	height: 45;
 	width: 70%;
 	border-bottom-color: #f5fcff;
@@ -27,32 +27,36 @@ const InputContainer = styled.View`
 	align-items: center;
 `;
 
-const Input = styled.TextInput`
+export const Input = styled.TextInput`
 	height: 45;
 	margin-left: 16px;
 	border-bottom-color: #ffffff;
 	flex: 1;
 `;
 
-const Icon = styled.Image`
+export const Icon = styled.Image`
 	width: ${(props) => props.size}px;
 	height: ${(props) => props.size}px;
 	margin-left: 15px;
 	justify-content: center;
 `;
 
-const ButtonContainer = styled.TouchableHighlight`
+export const ButtonContainer = styled.TouchableHighlight`
 	height: 45;
 	width: 70%;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	border-radius: 30px;
-	background-color: ${(props) => props.background};
+	background-color: ${(props) => props.background || "white"};
 `;
 
-const TextColor = styled.Text`
+export const TextColor = styled.Text`
 	color: ${(props) => props.color || "white"};
+`;
+
+export const TextContainer = styled.TouchableOpacity`
+	margin-top: 70px;
 `;
 
 const OrContainer = styled.View`
@@ -70,15 +74,6 @@ const Line = styled.View`
 const OrText = styled.Text`
 	margin: 20px;
 	color: white;
-`;
-
-const TextContainer = styled.TouchableOpacity`
-	margin-top: 70px;
-	margin-horizontal: 25px;
-`;
-
-const Row = styled.View`
-	flex-direction: row;
 `;
 
 export default class LoginScreen extends Component {
@@ -101,11 +96,11 @@ export default class LoginScreen extends Component {
 			});
 			alert(`Logged in!, Hi ${response.json().name}!`);
 		}
+	}
+
+	handleCreateAccount = () => {
+		this.props.navigation.navigate("Register");
 	};
-
-	handleForgotDetails = () => {};
-
-	handleCreateAccount = () => {};
 
 	render() {
 		return (
@@ -141,15 +136,9 @@ export default class LoginScreen extends Component {
 				<ButtonContainer background='white' onPress={this.handleFacebookLogin}>
 					<TextColor color='blue'>CONTINUE WITH FACEBOOK</TextColor>
 				</ButtonContainer>
-				<Row>
-					<TextContainer onPress={this.handleForgotDetails}>
-						<TextColor>FORGOT DETAILS?</TextColor>
-					</TextContainer>
-
-					<TextContainer onPress={this.handleCreateAccount}>
-						<TextColor>CREATE ACCOUNT</TextColor>
-					</TextContainer>
-				</Row>
+				<TextContainer onPress={this.handleCreateAccount}>
+					<TextColor>CREATE AN ACCOUNT</TextColor>
+				</TextContainer>
 			</Container>
 		);
 	}
