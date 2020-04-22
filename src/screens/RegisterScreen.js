@@ -27,9 +27,6 @@ export default class RegisterScreen extends Component {
 		try {
 			auth()
 				.createUserWithEmailAndPassword(email, password)
-				.then(() => {
-					this.props.navigation.navigate("Login");
-				})
 				.catch((error) => {
 					showToast(error);
 				});

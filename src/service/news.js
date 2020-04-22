@@ -23,7 +23,7 @@ export const getArticles = async (
 	}
 };
 
-export const saveArticle = (article) => {
+export const saveArticle = (article, onSaveComplete) => {
 	try {
 		firestore()
 			.collection("Articles")
@@ -37,7 +37,8 @@ export const saveArticle = (article) => {
 				createdAt: firestore.FieldValue.serverTimestamp(),
 			})
 			.then(() => {
-				showToast(null, "Saved");
+				onSaveComplete();
+				showToast(null, "Your article has been saved");
 			});
 	} catch (error) {
 		showToast(error);

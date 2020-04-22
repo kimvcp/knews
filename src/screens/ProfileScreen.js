@@ -11,7 +11,6 @@ export default class ProfileScreen extends Component {
 	handleLogout = () => {
 		auth()
 			.signOut()
-			.then(() => this.props.navigation.navigate("Login"))
 			.catch((error) => {
 				showToast(error);
 			});

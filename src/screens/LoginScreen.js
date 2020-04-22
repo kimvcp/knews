@@ -101,9 +101,6 @@ export default class LoginScreen extends Component {
 		try {
 			auth()
 				.signInWithEmailAndPassword(email, password)
-				.then(() => {
-					this.props.navigation.navigate("Tab");
-				})
 				.catch((error) => {
 					showToast(error);
 				});

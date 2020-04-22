@@ -18,7 +18,7 @@ export default class TabScreen extends Component {
 						backgroundColor: "#F9AA33",
 					}}>
 					<Tab
-						tabStyle={{ backgroundColor: "#4A6572"}}
+						tabStyle={{ backgroundColor: "#4A6572" }}
 						activeTabStyle={{ backgroundColor: "#344955" }}
 						textStyle={{ color: "white", fontWeight: "500" }}
 						activeTextStyle={{ color: "#F9AA33", fontWeight: "700" }}
@@ -26,7 +26,7 @@ export default class TabScreen extends Component {
 						<SavedScreen />
 					</Tab>
 					<Tab
-						tabStyle={{ backgroundColor: "#4A6572"}}
+						tabStyle={{ backgroundColor: "#4A6572" }}
 						activeTabStyle={{ backgroundColor: "#344955" }}
 						textStyle={{ color: "white", fontWeight: "500" }}
 						activeTextStyle={{ color: "#F9AA33", fontWeight: "700" }}
@@ -34,7 +34,7 @@ export default class TabScreen extends Component {
 						<HomeScreen />
 					</Tab>
 					<Tab
-						tabStyle={{ backgroundColor: "#4A6572"}}
+						tabStyle={{ backgroundColor: "#4A6572" }}
 						activeTabStyle={{ backgroundColor: "#344955" }}
 						textStyle={{ color: "white", fontWeight: "500" }}
 						activeTextStyle={{ color: "#F9AA33", fontWeight: "700" }}

@@ -14,6 +14,9 @@ import TimeAgo from "./Time";
 export default class NewsItem extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			buttonText: "Save",
+		};
 	}
 
 	handleViewPressed = () => {
@@ -21,9 +24,14 @@ export default class NewsItem extends Component {
 		this.props.onViewPress({ url, title });
 	};
 
+	onSavedComplete = () => {
+		this.setState({ buttonText: "Saved" });
+	};
+
 	handleSavePressed = () => {
+		this.setState({ buttonText: "Loading..." });
 		const { data } = this.props;
-		this.props.onSavePress(data);
+		this.props.onSavePress(data, this.onSavedComplete);
 	};
 
 	render() {
@@ -34,6 +42,7 @@ export default class NewsItem extends Component {
 			source,
 			publishedAt,
 		} = this.props.data;
+		const { buttonText } = this.state;
 		return (
 			<ListItem thumbnail onPress={this.handleViewPressed}>
 				<Left>
@@ -64,8 +73,12 @@ export default class NewsItem extends Component {
 					</View>
 				</Body>
 				<Right>
-					<Button rounded info onPress={this.handleSavePressed}>
-						<Text>Save</Text>
+					<Button
+						rounded
+						info
+						onPress={this.handleSavePressed}
+						disabled={buttonText === "Saved"}>
+						<Text>{buttonText}</Text>
 					</Button>
 				</Right>
 			</ListItem>

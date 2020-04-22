@@ -1,6 +1,7 @@
 import { facebook_app_id } from "../config";
 import * as Facebook from "expo-facebook";
 import auth from "@react-native-firebase/auth";
+import { showToast } from "../screens/LoginScreen";
 
 export const loginFacebook = async () => {
 	try {
@@ -17,9 +18,9 @@ export const loginFacebook = async () => {
 			const facebookCredential = auth.FacebookAuthProvider.credential(token);
 			return auth().signInWithCredential(facebookCredential);
 		} else {
-			alert("Something is wrong !");
+			showToast(null, "Something is wrong !");
 		}
 	} catch ({ message }) {
-		alert(`Facebook Login Error: ${message}`);
+		showToast(null, `Facebook Login Error: ${message}`);
 	}
 };

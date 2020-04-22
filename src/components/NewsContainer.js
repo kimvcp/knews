@@ -5,14 +5,14 @@ import { getArticles, saveArticle } from "../service/news";
 import styled from "styled-components";
 import Panel from "./Panel";
 
-const LoadingContainer = styled.View`
+export const LoadingContainer = styled.View`
 	flex: 1;
 	align-items: center;
 	justify-content: center;
 	margin-top: 50px;
 `;
 
-const Loading = styled.Image`
+export const Loading = styled.Image`
 	width: 100px;
 	height: 100px;
 `;
@@ -32,9 +32,9 @@ export default class NewsContainer extends Component {
 		this.setState({ setModalVisible: true, modalArticleData: articleData });
 	};
 
-	handleSavePressed = (articleData) => {
-		saveArticle(articleData);
-	}
+	handleSavePressed = (articleData, onSaveComplete) => {
+		saveArticle(articleData, onSaveComplete);
+	};
 
 	handleModalClose = () => {
 		this.setState({ setModalVisible: false, modalArticleData: {} });
@@ -85,7 +85,13 @@ export default class NewsContainer extends Component {
 			<List
 				dataArray={articles}
 				renderRow={(article) => {
-					return <NewsItem onViewPress={this.handleViewPressed} onSavePress={this.handleSavePressed} data={article} />;
+					return (
+						<NewsItem
+							onViewPress={this.handleViewPressed}
+							onSavePress={this.handleSavePressed}
+							data={article}
+						/>
+					);
 				}}
 			/>
 		);
