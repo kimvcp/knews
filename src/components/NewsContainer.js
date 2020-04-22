@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container, Content, List } from "native-base";
 import NewsItem from "./NewsItem";
-import { getArticles } from "../service/news";
+import { getArticles, saveArticle } from "../service/news";
 import styled from "styled-components";
 import Panel from "./Panel";
 
@@ -31,6 +31,10 @@ export default class NewsContainer extends Component {
 	handleViewPressed = (articleData) => {
 		this.setState({ setModalVisible: true, modalArticleData: articleData });
 	};
+
+	handleSavePressed = (articleData) => {
+		saveArticle(articleData);
+	}
 
 	handleModalClose = () => {
 		this.setState({ setModalVisible: false, modalArticleData: {} });
@@ -81,7 +85,7 @@ export default class NewsContainer extends Component {
 			<List
 				dataArray={articles}
 				renderRow={(article) => {
-					return <NewsItem onPress={this.handleViewPressed} data={article} />;
+					return <NewsItem onViewPress={this.handleViewPressed} onSavePress={this.handleSavePressed} data={article} />;
 				}}
 			/>
 		);

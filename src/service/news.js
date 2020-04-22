@@ -1,9 +1,11 @@
-import {
-	articles_url,
-	api_key,
-} from "../config";
+import { articles_url, api_key } from "../config";
+import firestore from "@react-native-firebase/firestore";
+import { showToast } from "../screens/LoginScreen";
 
-export const getArticles = async (category='general', country_code='us') => {
+export const getArticles = async (
+	category = "general",
+	country_code = "us"
+) => {
 	try {
 		let articles = await fetch(
 			`${articles_url}?country=${country_code}&category=${category}`,
@@ -18,5 +20,26 @@ export const getArticles = async (category='general', country_code='us') => {
 		return result.articles;
 	} catch (error) {
 		throw error;
+	}
+};
+
+export const saveArticle = (article) => {
+	try {
+		firestore()
+			.collection("Articles")
+			.add({
+				title: article.title,
+				description: article.description,
+				source: article.source,
+				publishedAt: article.publishedAt,
+				urlToImage: article.urlToImage,
+				url: article.url,
+				createdAt: firestore.FieldValue.serverTimestamp(),
+			})
+			.then(() => {
+				showToast(null, "Saved");
+			});
+	} catch (error) {
+		showToast(error);
 	}
 };

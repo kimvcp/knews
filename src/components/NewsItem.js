@@ -18,7 +18,12 @@ export default class NewsItem extends Component {
 
 	handleViewPressed = () => {
 		const { url, title } = this.props.data;
-		this.props.onPress({ url, title });
+		this.props.onViewPress({ url, title });
+	};
+
+	handleSavePressed = () => {
+		const { data } = this.props;
+		this.props.onSavePress(data);
 	};
 
 	render() {
@@ -30,7 +35,7 @@ export default class NewsItem extends Component {
 			publishedAt,
 		} = this.props.data;
 		return (
-			<ListItem thumbnail>
+			<ListItem thumbnail onPress={this.handleViewPressed}>
 				<Left>
 					<Thumbnail
 						square
@@ -59,8 +64,8 @@ export default class NewsItem extends Component {
 					</View>
 				</Body>
 				<Right>
-					<Button transparent onPress={this.handleViewPressed}>
-						<Text>View</Text>
+					<Button rounded info onPress={this.handleSavePressed}>
+						<Text>Save</Text>
 					</Button>
 				</Right>
 			</ListItem>
