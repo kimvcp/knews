@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Text, Content, Button } from "native-base";
 import auth from "@react-native-firebase/auth";
+import { showToast } from "./LoginScreen";
 
 export default class ProfileScreen extends Component {
 	constructor(props) {
@@ -12,10 +13,7 @@ export default class ProfileScreen extends Component {
 			.signOut()
 			.then(() => this.props.navigation.navigate("Login"))
 			.catch((error) => {
-				if (error.code === "auth/no-current-user") {
-					alert("No user currently signed in");
-				}
-				console.log(error);
+				showToast(error);
 			});
 	};
 

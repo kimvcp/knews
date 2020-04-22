@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { loginFacebook } from "../service/facebook";
 import auth from "@react-native-firebase/auth";
+import { Toast } from "native-base";
 
 export const Container = styled.View`
 	flex: 1;
@@ -77,6 +78,16 @@ const OrText = styled.Text`
 	color: white;
 `;
 
+export const showToast = (error, message) => {
+	Toast.show({
+		text: error ? error.message : message,
+		buttonText: "Okay",
+		position: "bottom",
+		buttonTextStyle: { color: "white" },
+		buttonStyle: { backgroundColor: "#344955" },
+	});
+};
+
 export default class LoginScreen extends Component {
 	constructor(props) {
 		super(props);
@@ -87,20 +98,17 @@ export default class LoginScreen extends Component {
 	}
 	handleLogin = () => {
 		const { email, password } = this.state;
-		if (email && password) {
+		try {
 			auth()
 				.signInWithEmailAndPassword(email, password)
 				.then(() => {
 					this.props.navigation.navigate("Tab");
 				})
 				.catch((error) => {
-					if (error.code === "auth/wrong-password") {
-						alert("The email or password is invalid");
-					}
-					console.error(error);
+					showToast(error);
 				});
-		} else {
-			alert("The field cannot be empty");
+		} catch (error) {
+			showToast(error);
 		}
 	};
 

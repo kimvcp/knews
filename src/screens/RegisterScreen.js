@@ -8,6 +8,7 @@ import {
 	ButtonContainer,
 	TextContainer,
 	TextColor,
+	showToast,
 } from "./LoginScreen";
 import auth from "@react-native-firebase/auth";
 
@@ -23,26 +24,17 @@ export default class RegisterScreen extends Component {
 
 	handleRegister = () => {
 		const { email, password } = this.state;
-		if (email && password) {
+		try {
 			auth()
 				.createUserWithEmailAndPassword(email, password)
 				.then(() => {
-					alert("User account created & signed in!");
 					this.props.navigation.navigate("Login");
 				})
 				.catch((error) => {
-					if (error.code === "auth/email-already-in-use") {
-						alert("That email address is already in use!");
-					}
-
-					if (error.code === "auth/invalid-email") {
-						alert("That email address is invalid!");
-					}
-
-					console.error(error);
+					showToast(error);
 				});
-		} else {
-			alert("The field cannot be empty");
+		} catch (error) {
+			showToast(error);
 		}
 	};
 
