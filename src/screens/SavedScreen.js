@@ -10,11 +10,12 @@ import {
 	Body,
 	View,
 } from "native-base";
-// import { Container } from "../components/util";
 import { LoadingContainer, Loading } from "../components/NewsContainer";
 import NewsItem from "../components/NewsItem";
 import { getSavedArticles } from "../service/news";
 import TimeAgo from "../components/Time";
+import Panel from "../components/Panel";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class SavedScreen extends Component {
 	constructor(props) {
@@ -22,26 +23,46 @@ export default class SavedScreen extends Component {
 		this.state = {
 			isLoading: true,
 			articles: null,
+			setModalVisible: false,
+			modalArticleData: {},
 		};
 	}
 
 	componentDidMount() {
 		this.setState({ isLoading: true });
 		getSavedArticles((articles) =>
-			this.setState({ articles, isLoading: false })
+			this.setState({
+				articles,
+				isLoading: false,
+			})
 		);
 	}
 
+	handleModalClose = () => {
+		this.setState({ setModalVisible: false, modalArticleData: {} });
+	};
+
 	render() {
-		const { isLoading, articles } = this.state;
+		const {
+			isLoading,
+			articles,
+			setModalVisible,
+			modalArticleData,
+		} = this.state;
 
 		let renderSavedArticleLists = isLoading ? (
 			<LoadingContainer>
 				<Loading source={require("../../assets/loading.gif")} />
 			</LoadingContainer>
-		) : (
+		) : articles ? (
 			articles.map((article) => (
-				<View style={{ flex: 1 }}>
+				<TouchableOpacity
+					onPress={() =>
+						this.setState({
+							setModalVisible: true,
+							modalArticleData: article,
+						})
+					}>
 					<Card>
 						<CardItem>
 							<Left>
@@ -69,12 +90,19 @@ export default class SavedScreen extends Component {
 							<TimeAgo time={article.publishedAt} />
 						</CardItem>
 					</Card>
-				</View>
+				</TouchableOpacity>
 			))
+		) : (
+			<Text>There is no saved articles</Text>
 		);
 		return (
-			<Container>
+			<Container style={{ padding: 20 }}>
 				<Content>{renderSavedArticleLists}</Content>
+				<Panel
+					showModal={setModalVisible}
+					articleData={modalArticleData}
+					onClose={this.handleModalClose}
+				/>
 			</Container>
 		);
 	}

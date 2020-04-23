@@ -30,15 +30,19 @@ export const getArticles = async (
 
 export const getSavedArticles = async (onRetrieveComplete) => {
 	const articles = [];
-	const user = getUser();
-	const snapshot = await firestore()
-		.collection("Articles")
-		.orderBy("createdAt")
-		.get();
-	snapshot.forEach((documentSnapshot) => {
-		articles.push(documentSnapshot.data());
-	});
-	onRetrieveComplete(articles);
+	const user = await getUser();
+	if (user) {
+		const snapshot = await firestore()
+			.collection("Articles")
+			.orderBy("createdAt")
+			.get();
+
+		snapshot.forEach((documentSnapshot) => {
+			if (documentSnapshot.data().userId === user.uid)
+				articles.push(documentSnapshot.data());
+		});
+		onRetrieveComplete(articles);
+	}
 	return articles;
 };
 
