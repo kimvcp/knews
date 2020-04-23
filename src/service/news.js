@@ -1,6 +1,6 @@
 import { articles_url, api_key } from "../config";
 import firestore from "@react-native-firebase/firestore";
-import { showToast } from "../screens/LoginScreen";
+import { showToast } from "../components/util";
 import auth from "@react-native-firebase/auth";
 
 export const getArticles = async (
@@ -24,8 +24,12 @@ export const getArticles = async (
 	}
 };
 
+export const getUser = () => {
+	return auth().currentUser;
+};
+
 export const saveArticle = (article, onSaveComplete) => {
-	const user = auth().currentUser;
+	const user = getUser();
 	if (user) {
 		try {
 			firestore()

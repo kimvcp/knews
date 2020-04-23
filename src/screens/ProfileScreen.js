@@ -1,12 +1,27 @@
 import React, { Component } from "react";
-import { Container, Text, Content, Button } from "native-base";
+import { Text } from "native-base";
 import auth from "@react-native-firebase/auth";
-import { showToast } from "./LoginScreen";
+import { getUser } from "../service/news";
+import {
+	Container,
+	ButtonContainer,
+	TextColor,
+	showToast,
+} from "../components/util";
 
 export default class ProfileScreen extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			name: null,
+			email: null,
+		};
 	}
+
+	componentDidMount = async () => {
+		const user = await getUser();
+		this.setState({ name: user.displayName, email: user.email });
+	};
 
 	handleLogout = () => {
 		auth()
@@ -17,13 +32,14 @@ export default class ProfileScreen extends Component {
 	};
 
 	render() {
+		const { name, email } = this.state;
 		return (
 			<Container>
-				<Content>
-					<Button onPress={this.handleLogout}>
-						<Text>SIGN OUT</Text>
-					</Button>
-				</Content>
+				<Text>Name: {name}</Text>
+				<Text>Email: {email}</Text>
+				<ButtonContainer onPress={this.handleLogout}>
+					<TextColor>SIGN OUT</TextColor>
+				</ButtonContainer>
 			</Container>
 		);
 	}

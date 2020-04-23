@@ -9,7 +9,7 @@ import {
 	TextContainer,
 	TextColor,
 	showToast,
-} from "./LoginScreen";
+} from "../components/util";
 import auth from "@react-native-firebase/auth";
 
 export default class RegisterScreen extends Component {
@@ -19,24 +19,29 @@ export default class RegisterScreen extends Component {
 			name: null,
 			email: null,
 			password: null,
+			confirmPassword: null,
 		};
 	}
 
 	handleRegister = () => {
-		showToast(null, "Loading..");
-		const { name, email, password } = this.state;
-		try {
-			auth()
-				.createUserWithEmailAndPassword(email, password)
-				.then((userCredentials) => {
-					if (userCredentials.user)
-						userCredentials.user.updateProfile({ displayName: name });
-				})
-				.catch((error) => {
-					showToast(error);
-				});
-		} catch (error) {
-			showToast(error);
+		const { name, email, password, confirmPassword } = this.state;
+		if (password === confirmPassword) {
+			try {
+				showToast(null, "Loading..");
+				auth()
+					.createUserWithEmailAndPassword(email, password)
+					.then((userCredentials) => {
+						if (userCredentials.user)
+							userCredentials.user.updateProfile({ displayName: name });
+					})
+					.catch((error) => {
+						showToast(error);
+					});
+			} catch (error) {
+				showToast(error);
+			}
+		} else {
+			showToast(null, "Password and Confirm Password are not matching");
 		}
 	};
 
@@ -68,7 +73,7 @@ export default class RegisterScreen extends Component {
 					/>
 				</InputContainer>
 
-				<InputContainer marginBottom={50}>
+				<InputContainer>
 					<Icon size={22} source={require("../../assets/icons/password.png")} />
 					<Input
 						placeholder='Password'
@@ -78,11 +83,23 @@ export default class RegisterScreen extends Component {
 					/>
 				</InputContainer>
 
-				<ButtonContainer background='#344955' onPress={this.handleRegister}>
-					<TextColor color='#F9AA33'>REGISTER</TextColor>
+				<InputContainer marginBottom={50}>
+					<Icon size={22} source={require("../../assets/icons/password.png")} />
+					<Input
+						placeholder='Confirm Password'
+						secureTextEntry={true}
+						underlineColorAndroid='transparent'
+						onChangeText={(confirmPassword) =>
+							this.setState({ confirmPassword })
+						}
+					/>
+				</InputContainer>
+
+				<ButtonContainer onPress={this.handleRegister}>
+					<TextColor>REGISTER</TextColor>
 				</ButtonContainer>
 				<TextContainer onPress={this.handleHaveAccount}>
-					<TextColor>HAVE AN ACCOUNT?</TextColor>
+					<TextColor color='white'>HAVE AN ACCOUNT?</TextColor>
 				</TextContainer>
 			</Container>
 		);

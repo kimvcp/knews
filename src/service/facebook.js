@@ -1,7 +1,7 @@
 import { facebook_app_id } from "../config";
 import * as Facebook from "expo-facebook";
 import auth from "@react-native-firebase/auth";
-import { showToast } from "../screens/LoginScreen";
+import { showToast } from "../components/util";
 
 export const loginFacebook = async () => {
 	try {
