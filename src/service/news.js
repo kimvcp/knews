@@ -1,6 +1,7 @@
 import { articles_url, api_key } from "../config";
 import firestore from "@react-native-firebase/firestore";
 import { showToast } from "../screens/LoginScreen";
+import auth from "@react-native-firebase/auth";
 
 export const getArticles = async (
 	category = "general",
@@ -24,23 +25,27 @@ export const getArticles = async (
 };
 
 export const saveArticle = (article, onSaveComplete) => {
-	try {
-		firestore()
-			.collection("Articles")
-			.add({
-				title: article.title,
-				description: article.description,
-				source: article.source,
-				publishedAt: article.publishedAt,
-				urlToImage: article.urlToImage,
-				url: article.url,
-				createdAt: firestore.FieldValue.serverTimestamp(),
-			})
-			.then(() => {
-				onSaveComplete();
-				showToast(null, "Your article has been saved");
-			});
-	} catch (error) {
-		showToast(error);
+	const user = auth().currentUser;
+	if (user) {
+		try {
+			firestore()
+				.collection("Articles")
+				.add({
+					userId: user.uid,
+					title: article.title,
+					description: article.description,
+					source: article.source,
+					publishedAt: article.publishedAt,
+					urlToImage: article.urlToImage,
+					url: article.url,
+					createdAt: firestore.FieldValue.serverTimestamp(),
+				})
+				.then(() => {
+					onSaveComplete();
+					showToast(null, "Your article has been saved");
+				});
+		} catch (error) {
+			showToast(error);
+		}
 	}
 };

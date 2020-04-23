@@ -23,10 +23,15 @@ export default class RegisterScreen extends Component {
 	}
 
 	handleRegister = () => {
-		const { email, password } = this.state;
+		showToast(null, "Loading..");
+		const { name, email, password } = this.state;
 		try {
 			auth()
 				.createUserWithEmailAndPassword(email, password)
+				.then((userCredentials) => {
+					if (userCredentials.user)
+						userCredentials.user.updateProfile({ displayName: name });
+				})
 				.catch((error) => {
 					showToast(error);
 				});

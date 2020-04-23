@@ -13,7 +13,7 @@ export const loginFacebook = async () => {
 		);
 		if (type === "success") {
 			await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-
+			showToast(null, "Loading..");
 			// Sign-in the user with the credential
 			const facebookCredential = auth.FacebookAuthProvider.credential(token);
 			return auth().signInWithCredential(facebookCredential);

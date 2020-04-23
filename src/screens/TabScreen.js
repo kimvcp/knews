@@ -6,11 +6,34 @@ import ProfileScreen from "./ProfileScreen";
 import HeaderSection from "../components/HeaderSection";
 
 export default class TabScreen extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			value: 2,
+		};
+	}
+
 	render() {
+		const { value } = this.state;
+		let title = null;
+		switch (value) {
+			case 0:
+				title = "SAVED NEWS";
+				break;
+			case 1:
+				title = "TODAY NEWS";
+				break;
+			case 2:
+				title = "PROFILE";
+				break;
+			default:
+				title = "KNEWS";
+		}
 		return (
 			<Container style={{ backgroundColor: "#4A6572" }}>
-				<HeaderSection />
+				<HeaderSection title={title} />
 				<Tabs
+					onChangeTab={(tabValue) => this.setState({ value: tabValue.i })}
 					style={{ marginBottom: 30 }}
 					tabBarPosition='bottom'
 					initialPage={1}

@@ -97,6 +97,7 @@ export default class LoginScreen extends Component {
 		};
 	}
 	handleLogin = () => {
+		showToast(null, "Loading..");
 		const { email, password } = this.state;
 		try {
 			auth()
