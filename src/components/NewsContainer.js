@@ -77,7 +77,7 @@ export default class NewsContainer extends Component {
 			setModalVisible,
 			modalArticleData,
 		} = this.state;
-		let newsLists = isLoading ? (
+		let renderArticleLists = isLoading ? (
 			<LoadingContainer>
 				<Loading source={require("../../assets/loading.gif")} />
 			</LoadingContainer>
@@ -97,7 +97,7 @@ export default class NewsContainer extends Component {
 		);
 		return (
 			<Container>
-				<Content>{newsLists}</Content>
+				<Content>{renderArticleLists}</Content>
 				<Panel
 					showModal={setModalVisible}
 					articleData={modalArticleData}

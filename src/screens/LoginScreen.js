@@ -88,7 +88,7 @@ export default class LoginScreen extends Component {
 					<Line />
 				</OrContainer>
 				<ButtonContainer background='white' onPress={loginFacebook}>
-					<TextColor color='blue'>CONTINUE WITH FACEBOOK</TextColor>
+					<TextColor color='#3360FF'>CONTINUE WITH FACEBOOK</TextColor>
 				</ButtonContainer>
 				<TextContainer onPress={this.handleCreateAccount}>
 					<TextColor>CREATE AN ACCOUNT</TextColor>

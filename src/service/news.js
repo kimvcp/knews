@@ -3,6 +3,10 @@ import firestore from "@react-native-firebase/firestore";
 import { showToast } from "../components/util";
 import auth from "@react-native-firebase/auth";
 
+export const getUser = () => {
+	return auth().currentUser;
+};
+
 export const getArticles = async (
 	category = "general",
 	country_code = "us"
@@ -24,8 +28,18 @@ export const getArticles = async (
 	}
 };
 
-export const getUser = () => {
-	return auth().currentUser;
+export const getSavedArticles = async (onRetrieveComplete) => {
+	const articles = [];
+	const user = getUser();
+	const snapshot = await firestore()
+		.collection("Articles")
+		.orderBy("createdAt")
+		.get();
+	snapshot.forEach((documentSnapshot) => {
+		articles.push(documentSnapshot.data());
+	});
+	onRetrieveComplete(articles);
+	return articles;
 };
 
 export const saveArticle = (article, onSaveComplete) => {
