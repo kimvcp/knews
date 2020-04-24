@@ -35,6 +35,16 @@ export const logout = () => {
 		});
 };
 
+export const updateInfo = async (newName, newPassword, onUpdateCompleted) => {
+	const user = getUser();
+	const profile = {
+		displayName: newName,
+	};
+	await user.updateProfile(profile);
+	await user.updatePassword(newPassword);
+	onUpdateCompleted();
+};
+
 export const getArticles = async (
 	category = "general",
 	country_code = "us"
