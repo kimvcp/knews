@@ -9,7 +9,7 @@ export default class TabScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: 2,
+			value: 1,
 		};
 	}
 
@@ -29,11 +29,15 @@ export default class TabScreen extends Component {
 			default:
 				title = "KNEWS";
 		}
+		handleTabChange = (tabValue) => {
+			this.setState({ value: tabValue.i });
+		};
+
 		return (
 			<Container style={{ backgroundColor: "#4A6572" }}>
 				<HeaderSection title={title} />
 				<Tabs
-					onChangeTab={(tabValue) => this.setState({ value: tabValue.i })}
+					onChangeTab={handleTabChange}
 					style={{ marginBottom: 30 }}
 					tabBarPosition='bottom'
 					initialPage={1}
@@ -46,7 +50,7 @@ export default class TabScreen extends Component {
 						textStyle={{ color: "white", fontWeight: "500" }}
 						activeTextStyle={{ color: "#F9AA33", fontWeight: "700" }}
 						heading='SAVED'>
-						<SavedScreen />
+						<SavedScreen value={value} />
 					</Tab>
 					<Tab
 						tabStyle={{ backgroundColor: "#4A6572" }}

@@ -1,21 +1,9 @@
 import React, { Component } from "react";
-import {
-	Container,
-	Left,
-	Thumbnail,
-	Content,
-	Card,
-	CardItem,
-	Text,
-	Body,
-	View,
-} from "native-base";
+import { Container, Content, Text } from "native-base";
 import { LoadingContainer, Loading } from "../components/NewsContainer";
-import NewsItem from "../components/NewsItem";
 import { getSavedArticles } from "../service/news";
-import TimeAgo from "../components/Time";
 import Panel from "../components/Panel";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import SavedNewsItem from "../components/SavedNewsItem";
 
 export default class SavedScreen extends Component {
 	constructor(props) {
@@ -28,7 +16,17 @@ export default class SavedScreen extends Component {
 		};
 	}
 
-	componentDidMount() {
+	handleViewPressed = (articleData) => {
+		this.setState({ setModalVisible: true, modalArticleData: articleData });
+	};
+
+	handleDeletePressed = () => {};
+
+	handleModalClose = () => {
+		this.setState({ setModalVisible: false, modalArticleData: {} });
+	};
+
+	callGetSavedArticles = () => {
 		this.setState({ isLoading: true });
 		getSavedArticles((articles) =>
 			this.setState({
@@ -36,11 +34,16 @@ export default class SavedScreen extends Component {
 				isLoading: false,
 			})
 		);
+	};
+
+	componentDidMount() {
+		this.callGetSavedArticles();
 	}
 
-	handleModalClose = () => {
-		this.setState({ setModalVisible: false, modalArticleData: {} });
-	};
+	// Call when changing tab
+	componentWillReceiveProps() {
+		this.callGetSavedArticles();
+	}
 
 	render() {
 		const {
@@ -56,41 +59,11 @@ export default class SavedScreen extends Component {
 			</LoadingContainer>
 		) : articles ? (
 			articles.map((article) => (
-				<TouchableOpacity
-					onPress={() =>
-						this.setState({
-							setModalVisible: true,
-							modalArticleData: article,
-						})
-					}>
-					<Card>
-						<CardItem>
-							<Left>
-								<Thumbnail
-									square
-									source={{
-										uri:
-											article.urlToImage != null
-												? article.urlToImage
-												: "https://retohercules.com/images/question-mark-clipart-transparent-background-2.png",
-									}}
-								/>
-							</Left>
-
-							<Body>
-								<CardItem header>
-									<Text numberOfLines={2}>{article.title}</Text>
-								</CardItem>
-								<Text numberOfLines={2}>{article.description}</Text>
-							</Body>
-						</CardItem>
-
-						<CardItem footer>
-							<Text note>{article.source.name}</Text>
-							<TimeAgo time={article.publishedAt} />
-						</CardItem>
-					</Card>
-				</TouchableOpacity>
+				<SavedNewsItem
+					onViewPress={this.handleViewPressed}
+					onDeletePress={this.handleDeletePressed}
+					data={article}
+				/>
 			))
 		) : (
 			<Text>There is no saved articles</Text>
