@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Content, Text } from "native-base";
+import { Container, Content, Text, View } from "native-base";
 import { LoadingContainer, Loading } from "../components/NewsContainer";
 import { getSavedArticles, deleteArticle } from "../service/news";
 import Panel from "../components/Panel";
@@ -60,7 +60,7 @@ export default class SavedScreen extends Component {
 			<LoadingContainer>
 				<Loading source={require("../../assets/loading.gif")} />
 			</LoadingContainer>
-		) : articles ? (
+		) : articles.length > 0 ? (
 			articles.map((article) => (
 				<SavedNewsItem
 					onViewPress={this.handleViewPressed}
@@ -69,7 +69,9 @@ export default class SavedScreen extends Component {
 				/>
 			))
 		) : (
-			<Text>There is no saved articles</Text>
+			<View style={{ alignItems: "center" }}>
+				<Text>There is no saved article</Text>
+			</View>
 		);
 		return (
 			<Container style={{ padding: 20 }}>

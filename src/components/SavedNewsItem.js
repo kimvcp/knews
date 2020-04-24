@@ -25,6 +25,7 @@ export default class SavedNewsItem extends Component {
 	};
 
 	handleDeletePressed = () => {
+		this.setState({ buttonText: "Loading.." });
 		this.props.onDeletePress(this.props.data);
 	};
 
@@ -69,9 +70,12 @@ export default class SavedNewsItem extends Component {
 								<TimeAgo time={publishedAt} />
 								<Button
 									style={{ height: 30 }}
-									transparent
+									light
+									rounded
 									onPress={this.handleDeletePressed}>
-									<Text style={{ fontSize: 14 }}>{buttonText}</Text>
+									<Text style={{ fontSize: 14, color: "red" }}>
+										{buttonText}
+									</Text>
 								</Button>
 							</View>
 						</Body>
