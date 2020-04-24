@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Dimensions, Modal, Share, Image, Text } from "react-native";
+import { Dimensions, Modal, Share } from "react-native";
 import {
 	Container,
 	Header,

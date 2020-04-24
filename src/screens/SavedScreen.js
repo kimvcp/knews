@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Content, Text, View } from "native-base";
 import { LoadingContainer, Loading } from "../components/NewsContainer";
 import { getSavedArticles, deleteArticle } from "../service/news";
-import Panel from "../components/Panel";
+import Panel from "../components/NewsPanel";
 import SavedNewsItem from "../components/SavedNewsItem";
 import { showToast } from "../components/Util";
 

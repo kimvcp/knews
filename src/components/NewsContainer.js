@@ -3,7 +3,7 @@ import { Container, Content, List } from "native-base";
 import NewsItem from "./NewsItem";
 import { getArticles, saveArticle } from "../service/news";
 import styled from "styled-components";
-import Panel from "./Panel";
+import Panel from "./NewsPanel";
 
 export const LoadingContainer = styled.View`
 	flex: 1;
