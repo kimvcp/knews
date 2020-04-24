@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Left, Thumbnail, Body, Text, Card, CardItem } from "native-base";
+import { View, Thumbnail, Body, Text, Card, CardItem } from "native-base";
 import { TouchableOpacity } from "react-native";
 import TimeAgo from "./Time";
 
@@ -31,29 +31,31 @@ export default class SavedNewsItem extends Component {
 			<TouchableOpacity onPress={this.handleViewPressed}>
 				<Card>
 					<CardItem>
-						<Left>
-							<Thumbnail
-								square
-								source={{
-									uri:
-										urlToImage != null
-											? urlToImage
-											: "https://retohercules.com/images/question-mark-clipart-transparent-background-2.png",
-								}}
-							/>
-						</Left>
-
-						<Body>
-							<CardItem header>
-								<Text numberOfLines={2}>{title}</Text>
-							</CardItem>
-							<Text numberOfLines={2}>{description}</Text>
+						<Thumbnail
+							square
+							source={{
+								uri:
+									urlToImage != null
+										? urlToImage
+										: "https://retohercules.com/images/question-mark-clipart-transparent-background-2.png",
+							}}
+						/>
+						<Body style={{ marginLeft: 20 }}>
+							<Text numberOfLines={2}>{title}</Text>
+							<Text note numberOfLines={2}>
+								{description}
+							</Text>
+							<View
+								style={{
+									flex: 1,
+									flexDirection: "row",
+									marginTop: 8,
+									marginLeft: 0,
+								}}>
+								<Text note>{source.name}</Text>
+								<TimeAgo time={publishedAt} />
+							</View>
 						</Body>
-					</CardItem>
-
-					<CardItem footer>
-						<Text note>{source.name}</Text>
-						<TimeAgo time={publishedAt} />
 					</CardItem>
 				</Card>
 			</TouchableOpacity>
