@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { Text } from "native-base";
 import auth from "@react-native-firebase/auth";
-import { getUser } from "../service/news";
+import { getUser, logout } from "../service/news";
 import {
 	Container,
 	ButtonContainer,
 	TextColor,
-	showToast,
-} from "../components/util";
+} from "../components/Util";
 
 export default class ProfileScreen extends Component {
 	constructor(props) {
@@ -23,21 +22,13 @@ export default class ProfileScreen extends Component {
 		this.setState({ name: user.displayName, email: user.email });
 	};
 
-	handleLogout = () => {
-		auth()
-			.signOut()
-			.catch((error) => {
-				showToast(error);
-			});
-	};
-
 	render() {
 		const { name, email } = this.state;
 		return (
 			<Container>
 				<Text>Name: {name}</Text>
 				<Text>Email: {email}</Text>
-				<ButtonContainer onPress={this.handleLogout}>
+				<ButtonContainer onPress={logout}>
 					<TextColor>SIGN OUT</TextColor>
 				</ButtonContainer>
 			</Container>

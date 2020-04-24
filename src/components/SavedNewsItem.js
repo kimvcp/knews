@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { View, Thumbnail, Body, Text, Card, CardItem } from "native-base";
+import {
+	View,
+	Thumbnail,
+	Body,
+	Text,
+	Card,
+	CardItem,
+	Button,
+} from "native-base";
 import { TouchableOpacity } from "react-native";
 import TimeAgo from "./Time";
 
@@ -7,13 +15,17 @@ export default class SavedNewsItem extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			buttonText: "Save",
+			buttonText: "Delete",
 		};
 	}
 
 	handleViewPressed = () => {
 		const { url, title } = this.props.data;
 		this.props.onViewPress({ url, title });
+	};
+
+	handleDeletePressed = () => {
+		this.props.onDeletePress(this.props.data);
 	};
 
 	render() {
@@ -49,11 +61,18 @@ export default class SavedNewsItem extends Component {
 								style={{
 									flex: 1,
 									flexDirection: "row",
+									alignItems: "center",
 									marginTop: 8,
 									marginLeft: 0,
 								}}>
 								<Text note>{source.name}</Text>
 								<TimeAgo time={publishedAt} />
+								<Button
+									style={{ height: 30 }}
+									transparent
+									onPress={this.handleDeletePressed}>
+									<Text style={{ fontSize: 14 }}>{buttonText}</Text>
+								</Button>
 							</View>
 						</Body>
 					</CardItem>

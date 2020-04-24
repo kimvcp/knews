@@ -1,10 +1,38 @@
 import { articles_url, api_key } from "../config";
 import firestore from "@react-native-firebase/firestore";
-import { showToast } from "../components/util";
+import { showToast } from "../components/Util";
 import auth from "@react-native-firebase/auth";
 
 export const getUser = () => {
 	return auth().currentUser;
+};
+
+export const login = (email, password) => {
+	auth()
+		.signInWithEmailAndPassword(email, password)
+		.catch((error) => {
+			showToast(error);
+		});
+};
+
+export const register = (name, email, password) => {
+	auth()
+		.createUserWithEmailAndPassword(email, password)
+		.then((userCredentials) => {
+			if (userCredentials.user)
+				userCredentials.user.updateProfile({ displayName: name });
+		})
+		.catch((error) => {
+			showToast(error);
+		});
+};
+
+export const logout = () => {
+	auth()
+		.signOut()
+		.catch((error) => {
+			showToast(error);
+		});
 };
 
 export const getArticles = async (
@@ -39,7 +67,11 @@ export const getSavedArticles = async (onRetrieveComplete) => {
 
 		snapshot.forEach((documentSnapshot) => {
 			if (documentSnapshot.data().userId === user.uid)
-				articles.push(documentSnapshot.data());
+				articles.push({
+					...documentSnapshot.data(),
+					...{ id: documentSnapshot.ref.id },
+				});
+			console.log(articles);
 		});
 		onRetrieveComplete(articles);
 	}
@@ -71,3 +103,15 @@ export const saveArticle = (article, onSaveComplete) => {
 		}
 	}
 };
+
+export function deleteArticle(article, onDeleteComplete) {
+	firestore()
+		.collection("Articles")
+		.doc(article.id)
+		.delete()
+		.then(() => {
+			onDeleteComplete();
+			showToast(null, "Your article has been deleted");
+		})
+		.catch((error) => showToast(error));
+}

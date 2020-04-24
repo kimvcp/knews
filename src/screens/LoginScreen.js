@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { loginFacebook } from "../service/facebook";
-import auth from "@react-native-firebase/auth";
+import { login } from "../service/news";
 import {
 	Container,
 	Background,
@@ -12,7 +12,7 @@ import {
 	TextColor,
 	TextContainer,
 	showToast,
-} from "../components/util";
+} from "../components/Util";
 
 const OrContainer = styled.View`
 	flex-direction: row;
@@ -43,11 +43,7 @@ export default class LoginScreen extends Component {
 		showToast(null, "Loading..");
 		const { email, password } = this.state;
 		try {
-			auth()
-				.signInWithEmailAndPassword(email, password)
-				.catch((error) => {
-					showToast(error);
-				});
+			login(email, password);
 		} catch (error) {
 			showToast(error);
 		}

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Container, Content, Text } from "native-base";
 import { LoadingContainer, Loading } from "../components/NewsContainer";
-import { getSavedArticles } from "../service/news";
+import { getSavedArticles, deleteArticle } from "../service/news";
 import Panel from "../components/Panel";
 import SavedNewsItem from "../components/SavedNewsItem";
+import { showToast } from "../components/Util";
 
 export default class SavedScreen extends Component {
 	constructor(props) {
@@ -20,7 +21,9 @@ export default class SavedScreen extends Component {
 		this.setState({ setModalVisible: true, modalArticleData: articleData });
 	};
 
-	handleDeletePressed = () => {};
+	handleDeletePressed = (articleData) => {
+		deleteArticle(articleData, this.callGetSavedArticles);
+	};
 
 	handleModalClose = () => {
 		this.setState({ setModalVisible: false, modalArticleData: {} });

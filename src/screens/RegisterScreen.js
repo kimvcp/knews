@@ -9,8 +9,8 @@ import {
 	TextContainer,
 	TextColor,
 	showToast,
-} from "../components/util";
-import auth from "@react-native-firebase/auth";
+} from "../components/Util";
+import { register } from "../service/news";
 
 export default class RegisterScreen extends Component {
 	constructor(props) {
@@ -28,15 +28,7 @@ export default class RegisterScreen extends Component {
 		if (password === confirmPassword) {
 			try {
 				showToast(null, "Loading..");
-				auth()
-					.createUserWithEmailAndPassword(email, password)
-					.then((userCredentials) => {
-						if (userCredentials.user)
-							userCredentials.user.updateProfile({ displayName: name });
-					})
-					.catch((error) => {
-						showToast(error);
-					});
+				register(name, email, password);
 			} catch (error) {
 				showToast(error);
 			}
