@@ -12,7 +12,7 @@ import {
 	TextColor,
 	TextContainer,
 	showToast,
-} from "../components/Util";
+} from "../components/StyledComponent";
 
 const OrContainer = styled.View`
 	flex-direction: row;

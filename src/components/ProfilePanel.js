@@ -16,8 +16,7 @@ import {
 	Icon,
 	InputContainer,
 	Input,
-	showToast,
-} from "./Util";
+} from "./StyledComponent";
 import { View } from "react-native";
 
 export default class ProfilePanel extends Component {

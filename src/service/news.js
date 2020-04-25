@@ -1,6 +1,6 @@
 import { articles_url, api_key } from "../config";
 import firestore from "@react-native-firebase/firestore";
-import { showToast } from "../components/Util";
+import { showToast } from "../components/StyledComponent";
 import auth from "@react-native-firebase/auth";
 
 export const getUser = () => {

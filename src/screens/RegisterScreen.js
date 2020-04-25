@@ -9,7 +9,7 @@ import {
 	TextContainer,
 	TextColor,
 	showToast,
-} from "../components/Util";
+} from "../components/StyledComponent";
 import { register } from "../service/news";
 
 export default class RegisterScreen extends Component {

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Text, Header, Right, Button, Content } from "native-base";
+import { Text, Header, Right, Button } from "native-base";
 import { getUser, logout, updateInfo } from "../service/news";
 import {
 	Container,
 	ButtonContainer,
 	TextColor,
 	showToast,
-} from "../components/Util";
+} from "../components/StyledComponent";
 import ProfilePanel from "../components/ProfilePanel";
 
 export default class ProfileScreen extends Component {

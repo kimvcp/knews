@@ -4,7 +4,6 @@ import { LoadingContainer, Loading } from "../components/NewsContainer";
 import { getSavedArticles, deleteArticle } from "../service/news";
 import Panel from "../components/NewsPanel";
 import SavedNewsItem from "../components/SavedNewsItem";
-import { showToast } from "../components/Util";
 
 export default class SavedScreen extends Component {
 	constructor(props) {
