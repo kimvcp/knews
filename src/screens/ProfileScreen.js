@@ -22,7 +22,7 @@ const ButtonContainer = styled.TouchableHighlight`
 `;
 
 const LabelContainer = styled.View`
-	margin-top: 10px;
+	margin-top: 30px;
 	align-items: flex-start;
 `;
 
@@ -30,6 +30,12 @@ const Label = styled.Text`
 	margin-top: 20px;
 	font-size: 16px;
 	font-weight: 400;
+`;
+
+const UserImage = styled.Image`
+	width: ${(props) => props.size}px;
+	height: ${(props) => props.size}px;
+	margin-top: 50px;
 `;
 
 export default class ProfileScreen extends Component {
@@ -79,6 +85,7 @@ export default class ProfileScreen extends Component {
 		const { name, email, setModalVisible } = this.state;
 		return (
 			<Container>
+				<UserImage size={200} source={require("../../assets/default-user.png")} />
 				<LabelContainer>
 					<Label>
 						NAME:{"    "}

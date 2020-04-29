@@ -14,6 +14,13 @@ import {
 	showToast,
 } from "../components/StyledComponent";
 
+const Logo = styled.Image`
+	width: 350px;
+	height: 150px;
+	border-radius: 20px;
+	margin-bottom: 20px;
+`
+
 const OrContainer = styled.View`
 	flex-direction: row;
 	justify-content: center;
@@ -29,6 +36,7 @@ const Line = styled.View`
 const OrText = styled.Text`
 	margin: 20px;
 	color: white;
+	font-weight: 500;
 `;
 
 export default class LoginScreen extends Component {
@@ -57,6 +65,7 @@ export default class LoginScreen extends Component {
 		return (
 			<Container>
 				<Background source={require("../../assets/login-background.jpg")} />
+				<Logo source={require("../../assets/logo.png")} />
 				<InputContainer>
 					<Icon size={22} source={require("../../assets/icons/email.png")} />
 					<Input

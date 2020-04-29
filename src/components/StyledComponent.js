@@ -52,6 +52,7 @@ export const ButtonContainer = styled.TouchableHighlight`
 
 export const TextColor = styled.Text`
 	color: ${(props) => props.color || "#F9AA33"};
+	font-weight: 500;
 `;
 
 export const TextContainer = styled.TouchableOpacity`
