@@ -3,7 +3,6 @@ import { Modal } from "react-native";
 import {
 	Container,
 	Header,
-	Content,
 	Body,
 	Left,
 	Right,
@@ -75,7 +74,7 @@ export default class ProfilePanel extends Component {
 						</Body>
 						<Right />
 					</Header>
-					<View>
+					<View style={{ flex: 1, alignItems: "center", marginTop: 40 }}>
 						<InputContainer>
 							<Icon size={22} source={require("../../assets/icons/user.png")} />
 							<Input

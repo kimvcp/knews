@@ -73,7 +73,7 @@ export default class SavedScreen extends Component {
 			</View>
 		);
 		return (
-			<Container style={{ padding: 20 }}>
+			<Container style={{ padding: 15 }}>
 				<Content>{renderSavedArticleLists}</Content>
 				<Panel
 					showModal={setModalVisible}

@@ -1,13 +1,36 @@
 import React, { Component } from "react";
-import { Text, Header, Right, Button } from "native-base";
 import { getUser, logout, updateInfo } from "../service/news";
-import {
-	Container,
-	ButtonContainer,
-	TextColor,
-	showToast,
-} from "../components/StyledComponent";
+import { TextColor, showToast } from "../components/StyledComponent";
 import ProfilePanel from "../components/ProfilePanel";
+import styled from "styled-components";
+
+const Container = styled.View`
+	flex: 1;
+	align-items: center;
+`;
+
+const ButtonContainer = styled.TouchableHighlight`
+	height: 45;
+	width: 70%;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 30px;
+	background-color: ${(props) => props.background || "#344955"};
+	margin-horizontal: 10px;
+	margin-top: ${(props) => props.marginTop || "15"}px;
+`;
+
+const LabelContainer = styled.View`
+	margin-top: 10px;
+	align-items: flex-start;
+`;
+
+const Label = styled.Text`
+	margin-top: 20px;
+	font-size: 16px;
+	font-weight: 400;
+`;
 
 export default class ProfileScreen extends Component {
 	constructor(props) {
@@ -56,15 +79,21 @@ export default class ProfileScreen extends Component {
 		const { name, email, setModalVisible } = this.state;
 		return (
 			<Container>
-				<Header>
-					<Right>
-						<Button onPress={() => this.setState({ setModalVisible: true })}>
-							<Text>Edit</Text>
-						</Button>
-					</Right>
-				</Header>
-				<Text>Name: {name}</Text>
-				<Text>Email: {email}</Text>
+				<LabelContainer>
+					<Label>
+						NAME:{"    "}
+						{name}
+					</Label>
+					<Label>
+						EMAIL:{"    "}
+						{email}
+					</Label>
+				</LabelContainer>
+				<ButtonContainer
+					marginTop={50}
+					onPress={() => this.setState({ setModalVisible: true })}>
+					<TextColor>EDIT</TextColor>
+				</ButtonContainer>
 				<ButtonContainer onPress={logout}>
 					<TextColor>SIGN OUT</TextColor>
 				</ButtonContainer>
