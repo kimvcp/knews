@@ -8,6 +8,7 @@ import {
 	CardItem,
 	Button,
 } from "native-base";
+import { Alert } from "react-native";
 import { TouchableOpacity } from "react-native";
 import TimeAgo from "./Time";
 
@@ -25,8 +26,24 @@ export default class SavedNewsItem extends Component {
 	};
 
 	handleDeletePressed = () => {
-		this.setState({ buttonText: "Loading.." });
-		this.props.onDeletePress(this.props.data);
+		Alert.alert(
+			"Are you sure you want to delete?",
+			"You won't be able to undo the changes.",
+			[
+				{
+					text: "Cancel",
+					style: "cancel",
+				},
+				{
+					text: "Confirm",
+					onPress: () => {
+						this.setState({ buttonText: "Loading.." });
+						this.props.onDeletePress(this.props.data);
+					},
+				},
+			],
+			{ cancelable: false }
+		);
 	};
 
 	render() {
