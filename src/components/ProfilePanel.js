@@ -78,7 +78,7 @@ export default class ProfilePanel extends Component {
 						<InputContainer>
 							<Icon size={22} source={require("../../assets/icons/user.png")} />
 							<Input
-								placeholder='New Userame'
+								placeholder='New Username'
 								keyboardType='default'
 								underlineColorAndroid='transparent'
 								onChangeText={(name) => this.setState({ name })}

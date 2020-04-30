@@ -73,13 +73,9 @@ export default class ProfileScreen extends Component {
 	handleUpdateInfo = (newName, newPassword, confirmPassword) => {
 		if (newPassword === confirmPassword) {
 			showToast(null, "Loading..");
-			try {
-				updateInfo(newName, newPassword, () =>
-					this.onProfileUpdated(newName, newPassword)
-				);
-			} catch (error) {
-				showToast(error);
-			}
+			updateInfo(newName, newPassword, () =>
+				this.onProfileUpdated(newName, newPassword)
+			);
 		} else {
 			showToast(null, "Password and Confirm Password are not matching");
 		}

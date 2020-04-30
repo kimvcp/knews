@@ -40,9 +40,13 @@ export const updateInfo = async (newName, newPassword, onUpdateCompleted) => {
 	const profile = {
 		displayName: newName,
 	};
-	await user.updateProfile(profile);
-	await user.updatePassword(newPassword);
-	onUpdateCompleted();
+	await user
+		.updatePassword(newPassword)
+		.then(async () => {
+			await user.updateProfile(profile);
+			onUpdateCompleted();
+		})
+		.catch((error) => showToast(error));
 };
 
 export const getArticles = async (
