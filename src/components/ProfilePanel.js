@@ -43,7 +43,7 @@ export default class ProfilePanel extends Component {
 				onRequestClose={this.handleClose}>
 				<Container
 					style={{
-						backgroundColor: "#fff",
+						backgroundColor: "#F0F0F0",
 						marginTop: 50,
 						marginBottom: 100,
 						marginHorizontal: 20,

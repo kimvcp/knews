@@ -9,27 +9,35 @@ const Container = styled.View`
 	align-items: center;
 `;
 
+const FormContainer = styled.View`
+	margin-top: 30px;
+	padding-top: 20px;
+	padding-horizontal: 50px;
+	padding-bottom: 30px;
+	border-radius: 30px;
+	background-color: #f0f0f0;
+`;
+
 const ButtonContainer = styled.TouchableHighlight`
 	height: 45;
-	width: 70%;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	border-radius: 30px;
 	background-color: ${(props) => props.background || "#344955"};
 	margin-horizontal: 10px;
-	margin-top: ${(props) => props.marginTop || "15"}px;
+	margin-top: ${(props) => props.marginTop || "20"}px;
 `;
 
 const LabelContainer = styled.View`
-	margin-top: 30px;
 	align-items: flex-start;
+	flex-direction: row;
 `;
 
 const Label = styled.Text`
-	margin-top: 20px;
 	font-size: 16px;
-	font-weight: 400;
+	font-weight: ${(props) => props.fontWeight || "bold"};
+	margin-top: ${(props) => props.marginTop || "20"}px;
 `;
 
 const UserImage = styled.Image`
@@ -85,25 +93,28 @@ export default class ProfileScreen extends Component {
 		const { name, email, setModalVisible } = this.state;
 		return (
 			<Container>
-				<UserImage size={200} source={require("../../assets/default-user.png")} />
-				<LabelContainer>
-					<Label>
-						NAME:{"    "}
-						{name}
-					</Label>
-					<Label>
-						EMAIL:{"    "}
-						{email}
-					</Label>
-				</LabelContainer>
-				<ButtonContainer
-					marginTop={50}
-					onPress={() => this.setState({ setModalVisible: true })}>
-					<TextColor>EDIT</TextColor>
-				</ButtonContainer>
-				<ButtonContainer onPress={logout}>
-					<TextColor>SIGN OUT</TextColor>
-				</ButtonContainer>
+				<UserImage
+					size={200}
+					source={require("../../assets/default-user.png")}
+				/>
+				<FormContainer>
+					<LabelContainer>
+						<Label>NAME:{"    "}</Label>
+						<Label fontWeight='400'>{name}</Label>
+					</LabelContainer>
+					<LabelContainer>
+						<Label>EMAIL:{"    "}</Label>
+						<Label fontWeight='400'>{email}</Label>
+					</LabelContainer>
+					<ButtonContainer
+						marginTop={50}
+						onPress={() => this.setState({ setModalVisible: true })}>
+						<TextColor>EDIT</TextColor>
+					</ButtonContainer>
+					<ButtonContainer background={"#e50000"} onPress={logout}>
+						<TextColor color={"#F0F0F0"}>SIGN OUT</TextColor>
+					</ButtonContainer>
+				</FormContainer>
 				<ProfilePanel
 					showModal={setModalVisible}
 					onClose={this.handleModalClose}
