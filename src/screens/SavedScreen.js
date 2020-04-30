@@ -68,7 +68,7 @@ export default class SavedScreen extends Component {
 				/>
 			))
 		) : (
-			<View style={{ alignItems: "center", marginTop: 10}}>
+			<View style={{ alignItems: "center", marginTop: 10 }}>
 				<Text note>There is no saved article</Text>
 			</View>
 		);

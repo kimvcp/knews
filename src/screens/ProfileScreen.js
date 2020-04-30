@@ -3,11 +3,7 @@ import { getUser, logout, updateInfo } from "../service/news";
 import { TextColor, showToast } from "../components/StyledComponent";
 import ProfilePanel from "../components/ProfilePanel";
 import styled from "styled-components";
-
-const Container = styled.View`
-	flex: 1;
-	align-items: center;
-`;
+import LinearGradient from "react-native-linear-gradient";
 
 const FormContainer = styled.View`
 	margin-top: 30px;
@@ -15,7 +11,7 @@ const FormContainer = styled.View`
 	padding-horizontal: 50px;
 	padding-bottom: 30px;
 	border-radius: 30px;
-	background-color: #f0f0f0;
+	background-color: white;
 `;
 
 const ButtonContainer = styled.TouchableHighlight`
@@ -92,7 +88,9 @@ export default class ProfileScreen extends Component {
 	render() {
 		const { name, email, setModalVisible } = this.state;
 		return (
-			<Container>
+			<LinearGradient
+				colors={["#FFF", "#C4C4C4"]}
+				style={{ flex: 1, alignItems: "center" }}>
 				<UserImage
 					size={200}
 					source={require("../../assets/default-user.png")}
@@ -120,7 +118,7 @@ export default class ProfileScreen extends Component {
 					onClose={this.handleModalClose}
 					onSubmit={this.handleUpdateInfo}
 				/>
-			</Container>
+			</LinearGradient>
 		);
 	}
 }

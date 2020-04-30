@@ -35,6 +35,7 @@ target 'knews' do
   pod 'DoubleConversion', :podspec => "#{rnPrefix}/third-party-podspecs/DoubleConversion.podspec"
   pod 'glog', :podspec => "#{rnPrefix}/third-party-podspecs/glog.podspec"
   pod 'Folly', :podspec => "#{rnPrefix}/third-party-podspecs/Folly.podspec"
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
   pod 'FBSDKLoginKit'
   pod 'Firebase/Auth'
   pod 'Firebase/Analytics'
