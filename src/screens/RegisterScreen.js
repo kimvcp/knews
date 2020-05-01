@@ -48,7 +48,7 @@ export default class RegisterScreen extends Component {
 				<InputContainer>
 					<Icon size={22} source={require("../../assets/icons/user.png")} />
 					<Input
-						placeholder='Full name'
+						placeholder='Name'
 						keyboardType='default'
 						underlineColorAndroid='transparent'
 						onChangeText={(name) => this.setState({ name })}

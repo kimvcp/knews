@@ -47,6 +47,7 @@ export default class NewsItem extends Component {
 			<ListItem thumbnail onPress={this.handleViewPressed}>
 				<Left>
 					<Thumbnail
+						large
 						square
 						source={{
 							uri:

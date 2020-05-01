@@ -62,6 +62,7 @@ export default class SavedNewsItem extends Component {
 				<Card>
 					<CardItem>
 						<Thumbnail
+							large
 							square
 							source={{
 								uri:

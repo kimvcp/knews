@@ -105,7 +105,7 @@ export default class ProfileScreen extends Component {
 						onPress={() => this.setState({ setModalVisible: true })}>
 						<TextColor>EDIT</TextColor>
 					</ButtonContainer>
-					<ButtonContainer background={"#e50000"} onPress={logout}>
+					<ButtonContainer background={"#B22222"} onPress={logout}>
 						<TextColor color={"#F0F0F0"}>SIGN OUT</TextColor>
 					</ButtonContainer>
 				</FormContainer>
