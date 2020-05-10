@@ -31,7 +31,7 @@ export default class Panel extends Component {
 	handleShare = () => {
 		const { url, title } = this.props.articleData;
 		if (url && title) {
-			message = `${title}\n\nRead More at ${url}\n\nThis article is shared via KNEWS Application`;
+			message = `${title}\n\nContinue reading at ${url}\n\nThis article is shared via KNEWS Application`;
 			return Share.share(
 				{ title, message, url: message },
 				{ dialogTitle: `Share ${title}` }
@@ -59,7 +59,10 @@ export default class Panel extends Component {
 							}}>
 							<Left>
 								<Button onPress={this.handleClose} transparent>
-									<Icon size={15} source={require("../../assets/icons/close.png")} />
+									<Icon
+										size={15}
+										source={require("../../assets/icons/close.png")}
+									/>
 								</Button>
 							</Left>
 							<Body>
@@ -70,7 +73,10 @@ export default class Panel extends Component {
 							</Body>
 							<Right>
 								<Button onPress={this.handleShare} transparent>
-									<Icon size={27} source={require("../../assets/icons/share.png")} />
+									<Icon
+										size={27}
+										source={require("../../assets/icons/share.png")}
+									/>
 								</Button>
 							</Right>
 						</Header>
