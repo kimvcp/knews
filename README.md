@@ -36,7 +36,7 @@ Open the Terminal and type the following command:
 
     $ npm install
 
-## Run Application Locally ( service is unavailable on Android device ).
+## Run Application Locally ( services are unavailable on Android device ).
 
 Make sure you have IOS Simulator running in your local machine.
 
