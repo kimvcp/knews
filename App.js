@@ -10,7 +10,6 @@ import ProfileScreen from "./src/screens/ProfileScreen";
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
-		// Set an initializing state whilst Firebase connects
 		this.state = {
 			initializing: true,
 			user: "",
@@ -19,10 +18,9 @@ export default class App extends React.Component {
 
 	componentDidMount() {
 		const subscriber = auth().onAuthStateChanged(this.onAuthStateChanged);
-		return subscriber; // unsubscribe on unmounts
+		return subscriber;
 	}
 
-	// Handle user state changes
 	onAuthStateChanged = (user) => {
 		const { initializing } = this.state;
 		this.setState({ user });

@@ -85,7 +85,6 @@ export const getSavedArticles = async (onRetrieveComplete) => {
 					...documentSnapshot.data(),
 					...{ id: documentSnapshot.ref.id },
 				});
-			console.log(articles);
 		});
 		onRetrieveComplete(articles);
 	}
