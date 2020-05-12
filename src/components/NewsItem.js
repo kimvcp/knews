@@ -29,7 +29,7 @@ export default class NewsItem extends Component {
 	};
 
 	handleSavePressed = () => {
-		this.setState({ buttonText: "Loading..." });
+		this.setState({ buttonText: "Loading.." });
 		const { data } = this.props;
 		this.props.onSavePress(data, this.onSavedComplete);
 	};
