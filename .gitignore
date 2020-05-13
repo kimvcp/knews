@@ -1,1 +1,11 @@
+# Node
 node_modules
+*.log
+.nvm
+/bots/node_modules/
+package-lock.json
+
+# CocoaPods
+/template/ios/Pods/
+/template/ios/Podfile.lock
+/RNTester/Gemfile.lock
