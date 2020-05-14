@@ -18,7 +18,7 @@ You must download the following to be able to run.
 
 - [Xcode](https://reactnative.dev/docs/environment-setup)
 
-  - The easiest way to install Xcode is via the **Mac App Store**. Installing Xcode will also provide the iOS Simulator and all the necessary tools for building your iOS app.
+  - The easiest way to install Xcode is via the **App Store**. Installing Xcode will also provide the iOS Simulator and all the necessary tools for building your iOS app.
 
 ## Installation Steps
 
